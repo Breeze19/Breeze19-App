@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
                     @Override
                     public void onSuccess(InstanceIdResult instanceIdResult) {
-                        DatabaseReference reference = database.getReference(Constants.FCM_TOKEN_FIRBASE_PATH).push();
+                        DatabaseReference reference = database.getReference(Constants.FCM_TOKEN_FIREBASE_PATH).push();
                         SharedPreferences.Editor editor = preferences.edit();
                         editor.putString(Constants.FCM_TOKEN_KEY, instanceIdResult.getToken());
                         editor.apply();

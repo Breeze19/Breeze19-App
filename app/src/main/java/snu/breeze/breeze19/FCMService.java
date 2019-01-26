@@ -24,12 +24,12 @@ public class FCMService extends FirebaseMessagingService {
         editor.putString(Constants.FCM_TOKEN_KEY,token);
         String key = preferences.getString(Constants.FCM_TOKEN_FIREBASE_KEY,"");
         if(key.length() == 0){
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference(Constants.FCM_TOKEN_FIRBASE_PATH).push();
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference(Constants.FCM_TOKEN_FIREBASE_PATH).push();
             key = reference.getKey();
             editor.putString(Constants.FCM_TOKEN_FIREBASE_KEY,reference.getKey());
         }
         editor.apply();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(Constants.FCM_TOKEN_FIRBASE_PATH + "/" + key);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(Constants.FCM_TOKEN_FIREBASE_PATH + "/" + key);
         reference.setValue(token).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
