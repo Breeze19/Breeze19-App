@@ -51,29 +51,20 @@ public class MapViewFragment extends Fragment {
             @Override
             public void onMapReady(GoogleMap mMap) {
                 googleMap = mMap;
+                Log.e(TAG, "Map is ready");
 
-                // For showing a move to my location button
-                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
-                googleMap.setMyLocationEnabled(true);
+                //googleMap.setMyLocationEnabled(true);
 
-                // For dropping a marker at a point on the Map
-                LatLng sydney = new LatLng(-34, 151);
+                // For dropping a marker at a point on the Ma
+                Log.e(TAG, "Map is ready");
+
                 try {
                     // Customise the styling of the base map using a JSON object defined
                     // in a raw resource file.
                     boolean success = googleMap.setMapStyle(
                             MapStyleOptions.loadRawResourceStyle(
                                     getContext(), R.raw.style_json));
-
+                    Log.e(TAG, String.valueOf(success));
                     if (!success) {
                         Log.e(TAG, "Style parsing failed.");
                     }
@@ -81,14 +72,14 @@ public class MapViewFragment extends Fragment {
                     Log.e(TAG, "Can't find style. Error: ", e);
                 }
                 // Position the map's camera near Sydney, Australia.
-                googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(-34, 151)));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(28.5267345,77.5731743, DEFAULT_ZOOM)));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(markerLatLng,
+                        DEFAULT_ZOOM));
                // googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker Title").snippet("Marker Description"));
-                googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(getContext(), R.raw.style_json));
+                //googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(getContext(), R.raw.style_json));
 
 
-                // For zooming automatically to the location of the marker
-                CameraPosition cameraPosition = new CameraPosition.Builder().target(sydney).zoom(12).build();
-                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
             }
         });
 
