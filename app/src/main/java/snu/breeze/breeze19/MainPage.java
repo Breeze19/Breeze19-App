@@ -28,8 +28,8 @@ public class MainPage extends Fragment {
         colors.add(R.color.colorPrimary);
         colors.add(R.color.white);
 
-        GlitchTextEffect effect = new GlitchTextEffect(getContext(),colors,"DISTRESS");
-        effect.setTextSize(60);
+        GlitchTextEffect effect = new GlitchTextEffect(getContext(),colors,"Breeze '19");
+        effect.setTextSize(100);
         effect.setNoise(6);
         effect.start();
         layout.addView(effect);
