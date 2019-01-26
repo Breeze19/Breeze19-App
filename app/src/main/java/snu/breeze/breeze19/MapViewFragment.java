@@ -28,8 +28,9 @@ import snu.breeze.breeze19.R;
 import static android.content.ContentValues.TAG;
 
 public class MapViewFragment extends Fragment {
+    private final String TAG = MapViewFragment.class.getSimpleName();
 
-    MapView mMapView;
+    private MapView mMapView;
     private GoogleMap googleMap;
 
     @Override
