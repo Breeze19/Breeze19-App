@@ -4,6 +4,8 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
     private ConnectivityManager connectivityManager;
     private SharedPreferences preferences;
 
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private ViewPagerAdapter pagerAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
         connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
         preferences = getSharedPreferences("breeze19",0);
         saveFCMToken();
+
+        viewPager = (ViewPager) findViewById(R.id.view_pager);
+        tabLayout = (TabLayout) findViewById(R.id.main_tab_layout);
+        pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(pagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     private void saveFCMToken(){
