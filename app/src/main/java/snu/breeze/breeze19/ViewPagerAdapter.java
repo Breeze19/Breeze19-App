@@ -15,6 +15,9 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position){
         Fragment fragment = null;
         switch(position){
+            case 0:
+                fragment = new MapViewFragment();
+                break;
             default:
                 fragment = new MainPage();
         }
