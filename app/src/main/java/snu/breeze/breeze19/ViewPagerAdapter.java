@@ -33,7 +33,11 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position){
         String title = null;
         switch(position){
-            default :
+            case 0 :
+                title = "Map";
+                break;
+
+            default:
                 title = "Main";
         }
         return title;
