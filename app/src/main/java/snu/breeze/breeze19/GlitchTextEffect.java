@@ -1,5 +1,6 @@
 package snu.breeze.breeze19;
 
+import android.util.Log;
 import android.widget.FrameLayout;
 
 import android.content.Context;
@@ -20,7 +21,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-    /**
+import static android.support.constraint.Constraints.TAG;
+
+/**
      * Created by IRSHU on 22/12/2017.
      */
 
@@ -35,6 +38,7 @@ import java.util.List;
         private int textSize = 50;
         private String fontFile="fonts/Poppins-Black.ttf";
         private int gravity = Gravity.CENTER;
+        private String TAG = "GlitchTextEffect";
 
         public GlitchTextEffect(Context context,List<Integer> colors, String text) {
             super(context);
@@ -114,6 +118,7 @@ import java.util.List;
 
         private void init() {
             for(int i = 0 ; i <colors.size() ; i++){
+                Log.d(TAG,colors.get(i).toString());
                 TextView textView = getTextView(colors.get(i));
                 addView(textView);
                 textViews.add(textView);

@@ -16,6 +16,9 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch(position){
             case 0:
+                fragment = new MainPage();
+                break;
+            case 1:
                 fragment = new MapViewFragment();
                 break;
             default:
@@ -31,12 +34,14 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position){
-        String title = null;
+        String title;
         switch(position){
             case 0 :
+                title = "Main";
+                break;
+            case 1:
                 title = "Map";
                 break;
-
             default:
                 title = "Main";
         }
