@@ -118,7 +118,6 @@ import static android.support.constraint.Constraints.TAG;
 
         private void init() {
             for(int i = 0 ; i <colors.size() ; i++){
-                Log.d(TAG,colors.get(i).toString());
                 TextView textView = getTextView(colors.get(i));
                 addView(textView);
                 textViews.add(textView);
