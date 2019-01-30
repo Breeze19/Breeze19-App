@@ -23,14 +23,45 @@ import java.util.ArrayList;
 public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder> {
     private final String TAG = EventsAdapter.class.getSimpleName();
 
-    private ArrayList<Object> eventsData;
+    private ArrayList<EventsData> eventsData;
     private Context Context;
 
     private ExpansionLayoutCollection expansionLayoutCollection = new ExpansionLayoutCollection();
 
-    public EventsAdapter(ArrayList<Object> EventsData, Context context){
-        this.eventsData = EventsData;
+    public EventsAdapter(Context context){
         this.Context = context;
+        this.eventsData = new ArrayList<EventsData>();
+    }
+
+    public void addData(EventsData data){
+        if(find(data) == -1){
+            eventsData.add(data);
+            notifyDataSetChanged();
+        }
+    }
+
+    public void update(EventsData data){
+        int index = find(data);
+        if(index != -1){
+            eventsData.remove(index);
+            eventsData.add(index,data);
+        }
+        notifyDataSetChanged();
+    }
+
+    public void delete(EventsData data){
+        int index = find(data);
+        eventsData.remove(index);
+        notifyDataSetChanged();
+    }
+
+    private int find(EventsData data){
+        for(int i=0;i<eventsData.size();i++){
+            if(eventsData.get(i).getKey().equals(data.getKey())){
+                return i;
+            }
+        }
+        return -1;
     }
 
     @NonNull
@@ -85,7 +116,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
             int width = displayMetrics.widthPixels;
             eventName.setTextSize(height/125);
                 eventDate.setText(((EventsData) data).geteventDate());
-                eventContact.setText(((EventsData) data).getEventContact());
+                eventContact.setText(((EventsData) data).geteventContact());
                 eventDetails.setText(((EventsData) data).geteventsDetails());
                 eventVenue.setText(((EventsData) data).geteventVenue());
             expansionLayout.collapse(true);
