@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -90,6 +92,9 @@ public class EventsFragment extends Fragment {
         eventsView = (RecyclerView) view.findViewById(R.id.events_recycler_view);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity().getApplicationContext());
         eventsView.setLayoutManager(manager);
+        DividerItemDecoration itemDecorator = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+        itemDecorator.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.recyclyer_separator));
+        eventsView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         reference.addChildEventListener(getChildEventListener());
         return view;
     }

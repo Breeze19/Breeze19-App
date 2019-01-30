@@ -6,6 +6,10 @@
     <color name="white">#FFFFFF</color>
     <color name="yellow">#FFFF66</color>
     <color name="blue">#50BFE6</color>
-    <color name="pink">#EE34D2</color>
+    <color name="neon_color3">#EE34D2</color>
     <color name="red">#FF355E</color>
+    <color name="menu_background">#0c0b0b</color>
+    <color name="neon_color1">#ff4775</color>
+    <color name="neon_color2">#fefefe</color>
+    <color name="background_color">#200944</color>
 </resources>

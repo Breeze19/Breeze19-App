@@ -51,20 +51,22 @@ public class MainActivity extends AppCompatActivity {
         viewPager =  findViewById(R.id.view_pager);
         saveFCMToken();
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
-                            case R.id.maps:
+                            case R.id.home:
                                 viewPager.setCurrentItem(0);
                                 break;
-                            case R.id.events:
+                            case R.id.maps:
                                 viewPager.setCurrentItem(1);
                                 break;
-                            case R.id.contact:
+                            case R.id.events:
                                 viewPager.setCurrentItem(2);
+                                break;
+                            case R.id.contact:
+                                viewPager.setCurrentItem(3);
                                 break;
                         }
                         return false;

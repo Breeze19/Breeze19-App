@@ -23,13 +23,13 @@
                 android:layout_width="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="70dp"
-                android:textColor="#FFFFFF"
+                android:textColor="#000"
                 android:id="@+id/event_name"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_centerVertical="true"
-                android:textColor="#AAA"
+                android:textColor="#000"
                 android:layout_marginRight="30dp"
                 android:gravity="end"
                 android:layout_alignParentRight="true"
@@ -62,30 +62,31 @@
             android:paddingRight="16dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
+
+            android:background="#0FF"
             android:layout_width="match_parent">
 
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="70dp"
-                android:textColor="#FFFFFF"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="20dp"
+                android:textColor="#000"
+                android:textSize="15dp"
                 android:id="@+id/event_details"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_centerVertical="true"
-                android:gravity="bottom|right"
-                android:layout_marginRight="70dp"
-                android:textColor="#FFFFFF"
+                android:gravity="bottom|end"
+                android:textColor="#000"
                 android:id="@+id/event_venue"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="70dp"
-                android:gravity="bottom"
-                android:textColor="#FFFFFF"
+                android:gravity="bottom|end"
+                android:textColor="#000"
                 android:id="@+id/event_contact"/>
         </LinearLayout>
 

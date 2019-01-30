@@ -23,17 +23,15 @@ public class MainPage extends Fragment {
         ConstraintLayout layout = view.findViewById(R.id.constraint);
 
         List<Integer> colors = new ArrayList<>();
-        colors.add(getResources().getColor(R.color.yellow));
-        colors.add(getResources().getColor(R.color.red));
+        colors.add(getResources().getColor(R.color.neon_color1));
         colors.add(getResources().getColor(R.color.blue));
-       // colors.add(getResources().getColor(R.color.pink));
-        //colors.add(R.color.blue);
-       // colors.add(R.color.pink);
-       // colors.add(R.color.red);
+        colors.add(getResources().getColor(R.color.yellow));
+        colors.add(getResources().getColor(R.color.neon_color3));
+
 
         GlitchTextEffect effect = new GlitchTextEffect(getContext(),colors,"Breeze '19");
         effect.setTextSize(79);
-        effect.setNoise(10);
+        effect.setNoise(7);
         effect.start();
         layout.addView(effect);
         return view;
