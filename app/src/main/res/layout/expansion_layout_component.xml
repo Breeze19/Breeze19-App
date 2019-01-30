@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.github.florent37.expansionpanel.ExpansionHeader
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:expansion_headerIndicator="@id/headerIndicator"
+        app:expansion_layout="@id/expansion_layout"
+        app:expansion_toggleOnClick="true">
+
+        <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="70dp"
+                android:textColor="#FFFFFF"
+                android:id="@+id/event_name"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="#AAA"
+                android:layout_marginRight="30dp"
+                android:gravity="end"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="30dp"
+                android:id="@+id/event_date" />
+
+            <ImageView
+                android:adjustViewBounds="true"
+                android:id="@+id/headerIndicator"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_width="wrap_content"
+                android:rotation="90"
+                app:srcCompat="@drawable/ic_arrow" />
+        </RelativeLayout>
+
+    </com.github.florent37.expansionpanel.ExpansionHeader>
+
+    <com.github.florent37.expansionpanel.ExpansionLayout
+        android:id="@+id/expansion_layout"
+        app:expansion_expanded="false"
+        android:layout_height="200dp"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_width="match_parent">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="70dp"
+                android:textColor="#FFFFFF"
+                android:id="@+id/event_details"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="70dp"
+                android:textColor="#FFFFFF"
+                android:id="@+id/event_venue"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="70dp"
+                android:textColor="#FFFFFF"
+                android:id="@+id/event_contact"/>
+        </LinearLayout>
+
+    </com.github.florent37.expansionpanel.ExpansionLayout>
+
+</LinearLayout>

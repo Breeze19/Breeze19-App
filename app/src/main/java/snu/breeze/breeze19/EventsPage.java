@@ -23,6 +23,7 @@ public class EventsPage extends Fragment {
             eventsViewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(),false);
             eventsViewPager.setAdapter(eventsViewPagerAdapter);
             eventsTabLayout.setupWithViewPager(eventsViewPager);
+
             return view;
     }
 

@@ -32,7 +32,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         } else {
             switch (position) {
                 default:
-                    fragment = new MainPage();
+                    fragment = new EventsFragment();
             }
         }
         return fragment;
