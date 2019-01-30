@@ -1,8 +1,16 @@
 package snu.breeze.breeze19;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.RemoteViews;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -50,5 +58,35 @@ public class FCMService extends FirebaseMessagingService {
 
     private void sendNotification(Map<String,String> data){
         //Display Notifications here
+        Bundle bundle = new Bundle();
+        for(Map.Entry<String,String> entry : data.entrySet()){
+            Log.e(TAG,entry.getValue());
+            bundle.putString(entry.getKey(),entry.getValue());
+        }
+        Intent startAppIntent = new Intent(this,MainActivity.class);
+        startAppIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this,0,startAppIntent,PendingIntent.FLAG_ONE_SHOT);
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel mChannel = new NotificationChannel("fcm_channel", "", importance);
+            mChannel.setDescription("Notification channel from Breeze");
+            mChannel.enableLights(true);
+            mChannel.setLightColor(R.color.red);
+            mChannel.enableVibration(true);
+            mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+            mNotificationManager.createNotificationChannel(mChannel);
+        }
+        RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notification_layout);
+        contentView.setTextViewText(R.id.title,(bundle.getString("heading")));
+        contentView.setTextViewText(R.id.text, bundle.getString("content").substring(0,Math.min(bundle.getString("content").length(),40)));
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,"fcm_channel")
+                .setSmallIcon(R.drawable.ic_location)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
+                .setContent(contentView);
+
+        mNotificationManager.notify(0,builder.build());
     }
 }
