@@ -116,7 +116,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
             int width = displayMetrics.widthPixels;
             eventName.setTextSize(height/125);
                 eventDate.setText(((EventsData) data).geteventDate());
-                eventContact.setText(((EventsData) data).getEventContact());
+                eventContact.setText(((EventsData) data).geteventContact());
                 eventDetails.setText(((EventsData) data).geteventsDetails());
                 eventVenue.setText(((EventsData) data).geteventVenue());
             expansionLayout.collapse(true);

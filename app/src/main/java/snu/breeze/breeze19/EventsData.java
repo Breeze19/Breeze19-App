@@ -11,8 +11,12 @@ public class EventsData implements Parcelable {
     private String eventVenue;
     private String eventDate;
     private String eventContact;
+    private String eventCategory;
     private String key;
 
+    public EventsData(){
+
+    }
 
     private EventsData(Parcel in){
         eventsName = in.readString();
@@ -20,15 +24,17 @@ public class EventsData implements Parcelable {
         eventVenue = in.readString();
         eventDate = in.readString();
         eventContact = in.readString();
+        eventCategory = in.readString();
         key = in.readString();
     }
 
-    public EventsData(String eventsName, String eventsDetails, String eventDate, String eventVenue,String eventContact){
+    public EventsData(String eventsName, String eventsDetails, String eventDate, String eventVenue,String eventContact,String eventCategory){
         this.eventsName = eventsName;
         this.eventsDetails = eventsDetails;
         this.eventVenue = eventVenue;
         this.eventDate = eventDate;
         this.eventContact = eventContact;
+        this.eventCategory = eventCategory;
     }
 
     @Override
@@ -60,6 +66,7 @@ public class EventsData implements Parcelable {
         out.writeString(eventVenue);
         out.writeString(eventDate);
         out.writeString(eventContact);
+        out.writeString(eventCategory);
         out.writeString(key);
     }
 
@@ -79,8 +86,12 @@ public class EventsData implements Parcelable {
         return eventDate;
     }
 
-    public String getEventContact(){
+    public String geteventContact(){
         return eventContact;
+    }
+
+    public String getEventCategory(){
+        return eventCategory;
     }
 
     public String getKey(){
@@ -112,6 +123,10 @@ public class EventsData implements Parcelable {
 
     public void seteventDate(String eventVenueCC){
         this.eventDate = eventDate;
+    }
+
+    public void setEventCategory(String category){
+        this.eventCategory = category;
     }
 
     public void setKey(String key){

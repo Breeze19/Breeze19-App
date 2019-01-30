@@ -48,21 +48,27 @@ public class EventsFragment extends Fragment {
                         adapter = new EventsAdapter(getActivity().getApplicationContext());
                         eventsView.setAdapter(adapter);
                     }
-                    adapter.addData(dataSnapshot.getValue(EventsData.class));
+                    EventsData data = dataSnapshot.getValue(EventsData.class);
+                    data.setKey(dataSnapshot.getKey());
+                    adapter.addData(data);
                 }
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 if(dataSnapshot.exists()){
-                    adapter.update(dataSnapshot.getValue(EventsData.class));
+                    EventsData data = dataSnapshot.getValue(EventsData.class);
+                    data.setKey(dataSnapshot.getKey());
+                    adapter.update(data);
                 }
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    adapter.delete(dataSnapshot.getValue(EventsData.class));
+                    EventsData data = dataSnapshot.getValue(EventsData.class);
+                    data.setKey(dataSnapshot.getKey());
+                    adapter.delete(data);
                 }
             }
 
