@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,12 +40,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
         database = FirebaseDatabase.getInstance();
         connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
         preferences = getSharedPreferences("breeze19",0);
         viewPager =  findViewById(R.id.view_pager);
-
         saveFCMToken();
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -52,10 +57,10 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
-                            case R.id.events:
+                            case R.id.maps:
                                 viewPager.setCurrentItem(0);
                                 break;
-                            case R.id.maps:
+                            case R.id.events:
                                 viewPager.setCurrentItem(1);
                                 break;
                             case R.id.contact:
@@ -84,9 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("page", "onPageSelected: "+position);
                 bottomNavigationView.getMenu().getItem(position).setChecked(true);
                 prevMenuItem = bottomNavigationView.getMenu().getItem(position);
-
             }
-
             @Override
             public void onPageScrollStateChanged(int state) {
 

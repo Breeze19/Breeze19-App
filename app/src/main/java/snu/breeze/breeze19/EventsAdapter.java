@@ -111,6 +111,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
             Log.d(TAG,"happing");
             ArrayList<String> details_here;
             eventName.setText(((EventsData) data).geteventsName());
+            Log.d("TAG",((EventsData) data).geteventsName());
             DisplayMetrics displayMetrics =Context.getResources().getDisplayMetrics();
             int height = displayMetrics.heightPixels;
             int width = displayMetrics.widthPixels;

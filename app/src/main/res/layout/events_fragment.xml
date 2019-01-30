@@ -3,10 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#061E56"
-    android:layout_marginTop="10dp"
+    android:background="#FFFFFF"
+    android:layout_marginTop="50dp"
     android:id="@+id/parent_layout_here">
-
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"

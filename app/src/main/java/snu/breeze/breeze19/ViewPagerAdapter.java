@@ -23,10 +23,11 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
                     fragment = new MapViewFragment();
                     break;
                 case 1:
-                    fragment = new MainPage();
+                    fragment = new EventsPage();
                     break;
                 case 2:
-                    fragment = new EventsPage();
+                    fragment = new MainPage();
+
                     break;
             }
         } else {
@@ -52,16 +53,24 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
                     title = "Map";
                     break;
                 case 1:
-                    title = "Main";
+                    title = "Events";
                     break;
                 case 2:
-                    title = "Events";
+                    title = "Main";
                     break;
             }
         } else {
             switch (position) {
-                default:
-                    title = "Events";
+                case 1:
+                    title = "Sports";
+                    break;
+                case 2:
+                    title = "Cultural";
+                    break;
+                case 3:
+                    title = "Techincal";
+                    break;
+
             }
         }
         return title;

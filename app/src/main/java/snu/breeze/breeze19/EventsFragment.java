@@ -86,6 +86,7 @@ public class EventsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.events_fragment,container,false);
+        Log.d(TAG,"Creating events fragment");
         eventsView = (RecyclerView) view.findViewById(R.id.events_recycler_view);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity().getApplicationContext());
         eventsView.setLayoutManager(manager);
