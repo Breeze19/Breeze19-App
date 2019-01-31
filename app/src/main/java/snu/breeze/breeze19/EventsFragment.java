@@ -26,6 +26,8 @@ public class EventsFragment extends Fragment {
 
    private FirebaseDatabase database;
    private DatabaseReference reference;
+   private String category;
+   private Integer xml_version;
 
     private EventsAdapter adapter;
     private RecyclerView eventsView;
@@ -38,6 +40,7 @@ public class EventsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         database = FirebaseDatabase.getInstance();
+//        Log.d(TAG,category);
         reference = database.getReference("/data/events/");
     }
 
@@ -47,12 +50,13 @@ public class EventsFragment extends Fragment {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 if(dataSnapshot.exists()){
                     if(adapter == null){
-                        adapter = new EventsAdapter(getActivity().getApplicationContext());
+                        adapter = new EventsAdapter(getActivity().getApplicationContext(),category);
                         eventsView.setAdapter(adapter);
                     }
                     EventsData data = dataSnapshot.getValue(EventsData.class);
                     data.setKey(dataSnapshot.getKey());
-                    adapter.addData(data);
+                    if(data.getEventCategory().equals(category))
+                        adapter.addData(data);
                 }
             }
 
@@ -87,8 +91,10 @@ public class EventsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View view = inflater.inflate(R.layout.events_fragment,container,false);
+
+        View view = inflater.inflate(R.layout.events_fragment1,container,false);
         Log.d(TAG,"Creating events fragment");
+        category = this.getArguments().getString("category");
         eventsView = (RecyclerView) view.findViewById(R.id.events_recycler_view);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity().getApplicationContext());
         eventsView.setLayoutManager(manager);

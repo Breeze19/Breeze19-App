@@ -1,9 +1,12 @@
 package snu.breeze.breeze19;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -25,11 +28,12 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
     private ArrayList<EventsData> eventsData;
     private Context Context;
-
+    private String category;
     private ExpansionLayoutCollection expansionLayoutCollection = new ExpansionLayoutCollection();
 
-    public EventsAdapter(Context context){
+    public EventsAdapter(Context context, String category){
         this.Context = context;
+        this.category = category;
         this.eventsData = new ArrayList<EventsData>();
     }
 
@@ -72,6 +76,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         holder.bind(eventsData.get(position));
         Log.d("bind", eventsData.get(position).getAllDetails().toString());
         expansionLayoutCollection.add(holder.getExpansionLayout());
@@ -117,6 +122,20 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
             eventName.setTextSize(height/125);
             eventDate.setText(((EventsData) data).geteventDate());
             eventContact.setText("Contact - " + ((EventsData) data).geteventContact());
+            if(!((EventsData) data).geteventContact().equals(""))
+            { Log.d("events",((EventsData) data).geteventContact());
+            String phoneNo1 = ((EventsData) data).geteventContact().split("\\(")[1];
+            final String phoneNo = phoneNo1.split("\\)")[0];
+            Log.d("evebtsAdapere",phoneNo);
+            eventContact.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Snackbar.make(v, "Calling", Snackbar.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNo));
+                    Context.startActivity(intent);
+                }
+            }); }
             eventContact.setText(((EventsData) data).geteventContact());
             eventDetails.setText(((EventsData) data).geteventsDetails());
             eventVenue.setText("Venue - " + ((EventsData) data).geteventVenue());
