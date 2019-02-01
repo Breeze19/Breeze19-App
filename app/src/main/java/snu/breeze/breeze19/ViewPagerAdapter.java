@@ -39,7 +39,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
                     Bundle bundle = new Bundle();
                     String myMessage = "flagship";
                     bundle.putString("category", myMessage );
-                    fragment = new EventsFragment();
+                    fragment = new flagshipFragment();
                     fragment.setArguments(bundle);
                     break;
                 case 1:

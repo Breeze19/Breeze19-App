@@ -8,15 +8,16 @@
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
-        android:layout_margin="15dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
         android:layout_height="match_parent" />
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
         android:src="@drawable/ic_contact"
         app:elevation="4dp"
         android:id="@+id/button1"

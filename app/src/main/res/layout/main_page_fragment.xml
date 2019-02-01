@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
     android:id="@+id/constraint"
     android:background="#200944"
     android:layout_gravity="center"
@@ -8,9 +10,9 @@
 
     <pl.droidsonroids.gif.GifImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/gif2"
+        android:layout_height="250dp"
+        android:id="@+id/gif"
         android:src="@drawable/orangejustice"
         />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

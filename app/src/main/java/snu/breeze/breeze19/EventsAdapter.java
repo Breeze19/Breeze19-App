@@ -78,7 +78,6 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.bind(eventsData.get(position));
-        Log.d("bind", eventsData.get(position).getAllDetails().toString());
         expansionLayoutCollection.add(holder.getExpansionLayout());
     }
 
@@ -115,7 +114,6 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
             Log.d(TAG,"happing");
             ArrayList<String> details_here;
             eventName.setText(((EventsData) data).geteventsName());
-            Log.d("TAG",((EventsData) data).geteventsName());
             DisplayMetrics displayMetrics =Context.getResources().getDisplayMetrics();
             int height = displayMetrics.heightPixels;
             int width = displayMetrics.widthPixels;
@@ -123,10 +121,9 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
             eventDate.setText(((EventsData) data).geteventDate());
             eventContact.setText("Contact - " + ((EventsData) data).geteventContact());
             if(!((EventsData) data).geteventContact().equals(""))
-            { Log.d("events",((EventsData) data).geteventContact());
+            {
             String phoneNo1 = ((EventsData) data).geteventContact().split("\\(")[1];
             final String phoneNo = phoneNo1.split("\\)")[0];
-            Log.d("evebtsAdapere",phoneNo);
             eventContact.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

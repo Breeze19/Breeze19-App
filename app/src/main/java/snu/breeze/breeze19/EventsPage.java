@@ -26,7 +26,7 @@ public class EventsPage extends Fragment {
             eventsViewPager = (ViewPager) view.findViewById(R.id.events_view_pager);
             eventsViewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(),false);
             eventsViewPager.setAdapter(eventsViewPagerAdapter);
-            eventsViewPager.setOffscreenPageLimit(3);
+            eventsViewPager.setOffscreenPageLimit(10);
             Log.d(TAG,"Events viewpager");
             eventsTabLayout.setupWithViewPager(eventsViewPager);
             return view;
