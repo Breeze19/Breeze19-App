@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
+
             @Override
             public void onPageSelected(int position) {
                 if (prevMenuItem != null) {
@@ -150,5 +151,4 @@ public class MainActivity extends AppCompatActivity {
         }
         return connected;
     }
-
 }

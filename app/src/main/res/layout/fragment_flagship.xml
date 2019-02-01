@@ -57,11 +57,9 @@
             android:src="@drawable/ritvizz"
 
             />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/newsletter_text1"
+        <com.robinhood.ticker.TickerView
+            android:id="@+id/tickerView"
+            android:layout_width="wrap_content"
             android:paddingBottom="5dp"
             android:textSize="40dp"
             android:text="8th Feb"
@@ -69,6 +67,14 @@
             android:layout_marginLeft="30dp"
             android:textStyle="bold"
             android:layout_marginTop="50dp"
-            android:paddingTop="5dp"/>
+            android:paddingTop="5dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:id="@+id/newsletter_text1"
+           />
     </com.github.florent37.diagonallayout.DiagonalLayout>
 </LinearLayout>
