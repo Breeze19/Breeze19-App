@@ -114,7 +114,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         public void bind(final EventsData data){
             float attendance = 0.0f;
             Log.d(TAG,"happing");
-            if("Sports".equals(category)){
+            if("sports".equals(category)){
                 liveScores.setVisibility(View.VISIBLE);
                 liveScores.setOnClickListener(new View.OnClickListener() {
                     @Override

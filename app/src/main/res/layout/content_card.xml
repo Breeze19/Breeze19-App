@@ -48,24 +48,24 @@
 
                 android:textSize="13sp" />
             <TextView
-                android:id="@+id/team2"
+                android:id="@+id/score2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="10dp"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
-                android:text="team2"
+                android:text="score2"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:paddingBottom="7sp"
                 android:textSize="13sp" />
             <TextView
-                android:id="@+id/score2"
+                android:id="@+id/team2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
-                android:text="score2"
+                android:text="team2"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"

@@ -34,7 +34,8 @@ public class LiveScoresActivity extends AppCompatActivity {
             sportName = getIntent().getExtras().getString(Constants.INTENT_KEY_SPORT_NAME);
         }
         database = FirebaseDatabase.getInstance();
-        reference = database.getReference("/data/livescores/" + sportName);
+        reference = database.getReference("/data/livescores/" + sportName + "/");
+        Log.e("AGAGAG",sportName);
         liveScoresView = (RecyclerView) findViewById(R.id.live_scores_recycler_view);
         LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
         liveScoresView.setLayoutManager(manager);
