@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/newsletter_text"
             android:paddingBottom="5dp"
-            android:textSize="50dp"
+            android:textSize="40dp"
             android:text="8th Feb"
             android:textAlignment="center"
 
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/newsletter_text1"
             android:paddingBottom="5dp"
-            android:textSize="50dp"
+            android:textSize="40dp"
             android:text="8th Feb"
             android:textAlignment="center"
             android:layout_marginLeft="30dp"

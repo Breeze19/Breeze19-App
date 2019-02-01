@@ -22,6 +22,7 @@ public class EventsPage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
             View view = inflater.inflate(R.layout.events_page,container,false);
             Log.d(TAG,"Events page made");
+
             eventsTabLayout = (TabLayout) view.findViewById(R.id.events_tab_layout);
             eventsViewPager = (ViewPager) view.findViewById(R.id.events_view_pager);
             eventsViewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(),false);

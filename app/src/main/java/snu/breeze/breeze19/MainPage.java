@@ -62,9 +62,7 @@ public class MainPage extends Fragment {
         colors.add(getResources().getColor(R.color.blue));
         colors.add(getResources().getColor(R.color.yellow));
         colors.add(getResources().getColor(R.color.neon_color3));
-
        // GifDrawable gifFromResource = new GifDrawable( getResources(), R.raw.g );
-
         GlitchTextEffect effect = new GlitchTextEffect(getContext(),colors,"Breeze '19");
         effect.setTextSize(79);
         effect.setNoise(7);

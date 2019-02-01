@@ -80,11 +80,11 @@
                 android:paddingTop="10dp"
                 fancy:fb_borderColor="#FFFFFF"
                 fancy:fb_borderWidth="1dp"
+                android:visibility="gone"
                 fancy:fb_defaultColor="#7ab800"
                 fancy:fb_focusColor="#9bd823"
-
-                fancy:fb_radius="30dp"
-                fancy:fb_text="SHUFFLE PLAY"
+                fancy:fb_radius="10dp"
+                fancy:fb_text="View Live Scores!"
                 fancy:fb_textColor="#FFFFFF" />
 
             <TextView
