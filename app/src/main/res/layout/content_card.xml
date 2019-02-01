@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="150dp">
@@ -34,8 +35,8 @@
                 android:paddingBottom="7sp"
                 android:layout_weight="1"
                 android:textSize="13sp" />
-            <TextView
-                android:id="@+id/score1"
+
+            <xyz.pinaki.android.wheelticker.Odometer
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
@@ -45,8 +46,12 @@
                 android:gravity="center"
                 android:paddingBottom="7sp"
                 android:layout_weight="1"
+                android:textSize="13sp"
+                android:layout_centerInParent="true"
+                custom:num_digits="1"
+                custom:digit_size="40"
+                android:id="@+id/score1"/>
 
-                android:textSize="13sp" />
             <TextView
                 android:id="@+id/team2"
                 android:layout_width="wrap_content"
@@ -59,19 +64,21 @@
                 android:gravity="center"
                 android:paddingBottom="7sp"
                 android:textSize="13sp" />
-            <TextView
-                android:id="@+id/score2"
+            <xyz.pinaki.android.wheelticker.Odometer
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 style="@style/Base.TextAppearance.AppCompat.Headline"
-                android:text="score2"
+                android:text="score1"
                 android:layout_gravity="center"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:paddingBottom="7sp"
-                android:textSize="13sp" />
-
+                android:layout_weight="1"
+                android:textSize="13sp"
+                android:layout_centerInParent="true"
+                custom:num_digits="1"
+                custom:digit_size="40"
+                android:id="@+id/score2"/>
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
