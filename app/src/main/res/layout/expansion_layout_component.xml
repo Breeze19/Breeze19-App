@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <com.github.florent37.expansionpanel.ExpansionHeader
@@ -65,8 +66,26 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="#0FF"
+            android:weightSum="1"
             android:layout_marginBottom="10dp"
             android:layout_width="match_parent">
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btn_spotify"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                fancy:fb_borderColor="#FFFFFF"
+                fancy:fb_borderWidth="1dp"
+                fancy:fb_defaultColor="#7ab800"
+                fancy:fb_focusColor="#9bd823"
+
+                fancy:fb_radius="30dp"
+                fancy:fb_text="SHUFFLE PLAY"
+                fancy:fb_textColor="#FFFFFF" />
 
             <TextView
                 android:layout_height="wrap_content"
