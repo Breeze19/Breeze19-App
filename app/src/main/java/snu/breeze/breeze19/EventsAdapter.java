@@ -26,14 +26,20 @@ import java.util.ArrayList;
 public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder> {
     private final String TAG = EventsAdapter.class.getSimpleName();
 
+    public interface EventsAdapterOnClickListener{
+        public void onClick(EventsData data);
+    }
+
+    private EventsAdapterOnClickListener listener;
     private ArrayList<EventsData> eventsData;
     private Context Context;
     private String category;
     private ExpansionLayoutCollection expansionLayoutCollection = new ExpansionLayoutCollection();
 
-    public EventsAdapter(Context context, String category){
+    public EventsAdapter(Context context, String category,EventsAdapterOnClickListener listener){
         this.Context = context;
         this.category = category;
+        this.listener = listener;
         this.eventsData = new ArrayList<EventsData>();
     }
 
@@ -76,7 +82,6 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         holder.bind(eventsData.get(position));
         expansionLayoutCollection.add(holder.getExpansionLayout());
     }
@@ -112,6 +117,13 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         public void bind(Object data){
             float attendance = 0.0f;
             Log.d(TAG,"happing");
+            if("Sports".equals(category)){
+                eventDate.setVisibility(View.GONE);
+                eventDate.setVisibility(View.GONE);
+                eventContact.setVisibility(View.GONE);
+                eventDetails.setVisibility(View.GONE);
+                eventVenue.setVisibility(View.GONE);
+            }
             ArrayList<String> details_here;
             eventName.setText(((EventsData) data).geteventsName());
             DisplayMetrics displayMetrics =Context.getResources().getDisplayMetrics();
