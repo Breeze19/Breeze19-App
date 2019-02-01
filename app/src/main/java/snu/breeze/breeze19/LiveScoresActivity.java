@@ -63,7 +63,7 @@ public class LiveScoresActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 if(dataSnapshot.exists()) {
                     if (adapter == null) {
-                        adapter = new LiveScoresAdapter();
+                        adapter = new LiveScoresAdapter(getApplicationContext());
                         liveScoresView.setAdapter(adapter);
                     }
                     adapter.add(dataSnapshot.getValue(LiveScoreData.class));
