@@ -21,25 +21,20 @@ import com.github.florent37.expansionpanel.viewgroup.ExpansionLayoutCollection;
 
 import java.util.ArrayList;
 
+import mehdi.sakout.fancybuttons.FancyButton;
 
 
 public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder> {
     private final String TAG = EventsAdapter.class.getSimpleName();
 
-    public interface EventsAdapterOnClickListener{
-        public void onClick(EventsData data);
-    }
-
-    private EventsAdapterOnClickListener listener;
     private ArrayList<EventsData> eventsData;
     private Context Context;
     private String category;
     private ExpansionLayoutCollection expansionLayoutCollection = new ExpansionLayoutCollection();
 
-    public EventsAdapter(Context context, String category,EventsAdapterOnClickListener listener){
+    public EventsAdapter(Context context, String category){
         this.Context = context;
         this.category = category;
-        this.listener = listener;
         this.eventsData = new ArrayList<EventsData>();
     }
 
@@ -94,6 +89,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder{
         private final String TAG = ViewHolder.class.getSimpleName();
 
+        private FancyButton liveScores;
         private ExpansionLayout expansionLayout;
         private TextView eventName;
         private TextView eventDetails;
@@ -107,6 +103,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
             expansionLayout = (ExpansionLayout) view.findViewById(R.id.expansion_layout);
             expansionLayoutCollection.openOnlyOne(false);
             // expansionLayout.setEnable(false);
+            liveScores = (FancyButton) view.findViewById(R.id.live_scores_button);
             eventName = view.findViewById(R.id.event_name);
             eventDetails = (TextView) view.findViewById(R.id.event_details);
             eventVenue = (TextView) view.findViewById(R.id.event_venue);
@@ -114,10 +111,19 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
             eventDate = view.findViewById(R.id.event_date);
         }
 
-        public void bind(Object data){
+        public void bind(final EventsData data){
             float attendance = 0.0f;
             Log.d(TAG,"happing");
             if("Sports".equals(category)){
+                liveScores.setVisibility(View.VISIBLE);
+                liveScores.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent liveScoresIntent = new Intent(Context,LiveScoresActivity.class);
+                        liveScoresIntent.putExtra(Constants.INTENT_KEY_SPORT_NAME,data.geteventsName().substring(0,data.geteventsName().indexOf('(')).trim().toLowerCase());
+                        Context.startActivity(liveScoresIntent);
+                    }
+                });
                 eventDate.setVisibility(View.GONE);
                 eventDate.setVisibility(View.GONE);
                 eventContact.setVisibility(View.GONE);

@@ -69,6 +69,7 @@ public class EventsData implements Parcelable {
         out.writeString(eventCategory);
         out.writeString(key);
     }
+
     @Override
     public String toString() {
         return geteventDate() + geteventsName();
