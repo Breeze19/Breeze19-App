@@ -1,5 +1,6 @@
 package snu.breeze.breeze19;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -34,8 +35,34 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
             }
         } else {
             switch (position) {
-                default:
+                case 0:
+                    Bundle bundle = new Bundle();
+                    String myMessage = "flagship";
+                    bundle.putString("category", myMessage );
+                    fragment = new flagshipFragment();
+                    fragment.setArguments(bundle);
+                    break;
+                case 1:
+                    bundle = new Bundle();
+                    myMessage = "sports";
+                    bundle.putString("category", myMessage );
                     fragment = new EventsFragment();
+                    fragment.setArguments(bundle);
+                    break;
+                case 2:
+                        bundle = new Bundle();
+                        myMessage = "cultural";
+                        bundle.putString("category", myMessage );
+                    fragment = new EventsFragment();
+                        fragment.setArguments(bundle);
+                        break;
+                 case 3:
+                        bundle = new Bundle();
+                        myMessage = "technical";
+                        bundle.putString("category", myMessage );
+                     fragment = new EventsFragment();
+                        fragment.setArguments(bundle);
+                        break;
             }
         }
         return fragment;

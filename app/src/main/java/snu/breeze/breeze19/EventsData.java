@@ -126,7 +126,7 @@ public class EventsData implements Parcelable {
         this.eventVenue = eventVenue;
     }
 
-    public void seteventDate(String eventVenueCC){
+    public void seteventDate(String eventDate){
         this.eventDate = eventDate;
     }
 
