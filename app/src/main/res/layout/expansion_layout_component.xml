@@ -71,7 +71,7 @@
             android:layout_width="match_parent">
 
             <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/btn_spotify"
+                android:id="@+id/live_scores_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingBottom="10dp"
