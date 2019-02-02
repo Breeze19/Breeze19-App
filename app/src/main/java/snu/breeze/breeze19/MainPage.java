@@ -64,7 +64,7 @@ public class MainPage extends Fragment {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         if(snapshot.exists()){
                             LiveScoreData data = snapshot.getValue(LiveScoreData.class);
-                            data.setKey(snapshot.getKey());
+                            data.setKey(dataSnapshot.getKey()+"$"+snapshot.getKey());
                             if(data.getisLive() == 1){
                                 Log.e("DATA",data.toString());
                                 adapter.add(data);
@@ -81,7 +81,7 @@ public class MainPage extends Fragment {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         if(snapshot.exists()){
                             LiveScoreData data = snapshot.getValue(LiveScoreData.class);
-                            data.setKey(snapshot.getKey());
+                            data.setKey(dataSnapshot.getKey()+"$"+snapshot.getKey());
                             if(data.getisLive() == 1){
                                 adapter.modify(data);
                             }

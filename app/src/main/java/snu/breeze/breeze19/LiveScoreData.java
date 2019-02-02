@@ -11,6 +11,7 @@ public class LiveScoreData implements Parcelable {
     private String score2;
     private String key;
     private int isLive;
+    private String sportName;
 
     public static final LiveScoreData.ClassLoaderCreator<LiveScoreData> CREATOR = new Parcelable.ClassLoaderCreator<LiveScoreData>(){
         @Override
@@ -44,6 +45,7 @@ public class LiveScoreData implements Parcelable {
         team2 = in.readString();
         score1 = in.readString();
         score2 = in.readString();
+        sportName = in.readString();
         isLive = in.readInt();
         key = in.readString();
     }
@@ -59,6 +61,7 @@ public class LiveScoreData implements Parcelable {
         out.writeString(team2);
         out.writeString(score1);
         out.writeString(score2);
+        out.writeString(sportName);
         out.writeInt(isLive);
         out.writeString(key);
     }
@@ -82,6 +85,10 @@ public class LiveScoreData implements Parcelable {
 
     public String getScore2(){
         return score2;
+    }
+
+    public String getSportName(){
+        return sportName;
     }
 
     public int getisLive(){
@@ -108,8 +115,12 @@ public class LiveScoreData implements Parcelable {
         this.score2 = score2;
     }
 
-    public void setisLive(int isLive){
-        this.isLive = isLive;
+    public void setisLive(int isLive) {
+        this.isLive=isLive;
+
+    }
+    public void setSportName(String sportName){
+        this.sportName = sportName;
     }
 
     public void setKey(String key){

@@ -67,21 +67,27 @@ public class LiveScoresActivity extends AppCompatActivity {
                         adapter = new LiveScoresAdapter(getApplicationContext());
                         liveScoresView.setAdapter(adapter);
                     }
-                    adapter.add(dataSnapshot.getValue(LiveScoreData.class));
+                    LiveScoreData data = dataSnapshot.getValue(LiveScoreData.class);
+                    data.setKey(reference.getKey());
+                    adapter.add(data);
                 }
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 if(dataSnapshot.exists()){
-                    adapter.modify(dataSnapshot.getValue(LiveScoreData.class));
+                    LiveScoreData data = dataSnapshot.getValue(LiveScoreData.class);
+                    data.setKey(reference.getKey());
+                    adapter.modify(data);
                 }
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    adapter.delete(dataSnapshot.getValue(LiveScoreData.class));
+                    LiveScoreData data = dataSnapshot.getValue(LiveScoreData.class);
+                    data.setKey(reference.getKey());
+                    adapter.delete(data);
                 }
             }
 
