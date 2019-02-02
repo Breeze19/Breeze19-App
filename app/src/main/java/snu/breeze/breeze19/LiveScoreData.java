@@ -108,7 +108,7 @@ public class LiveScoreData implements Parcelable {
         this.score2 = score2;
     }
 
-    public void setidLive(int isLive){
+    public void setisLive(int isLive){
         this.isLive = isLive;
     }
 

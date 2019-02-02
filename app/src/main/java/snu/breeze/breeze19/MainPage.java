@@ -66,6 +66,7 @@ public class MainPage extends Fragment {
                             LiveScoreData data = snapshot.getValue(LiveScoreData.class);
                             data.setKey(snapshot.getKey());
                             if(data.getisLive() == 1){
+                                Log.e("DATA",data.toString());
                                 adapter.add(data);
                             }
                         }

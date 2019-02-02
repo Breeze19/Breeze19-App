@@ -26,6 +26,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import android.Manifest;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -300,9 +301,14 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
             provider = locationManager.getBestProvider(criteria, true);
             locationManager.requestLocationUpdates(provider, 1000, 0, this);
             Location location = locationManager.getLastKnownLocation(provider);
-            double latitude = location.getLatitude();
-            double longitude = location.getLongitude();
-            LatLng myPosition = new LatLng(latitude, longitude);
+            if(location!=null) {
+                double latitude = location.getLatitude();
+                double longitude = location.getLongitude();
+                LatLng myPosition = new LatLng(latitude, longitude);
+            }
+            else{
+                Toast.makeText(getContext(), "Current location not available!", Toast.LENGTH_SHORT).show();
+            }
 
             googleMap.animateCamera(cu);
             button1.setOnClickListener(new View.OnClickListener() {
