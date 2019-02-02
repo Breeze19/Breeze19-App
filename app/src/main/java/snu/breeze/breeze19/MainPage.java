@@ -4,8 +4,13 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.Image;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +20,12 @@ import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.TextView;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +34,13 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class MainPage extends Fragment {
     private final String TAG = MainPage.class.getSimpleName();
+
+    private FirebaseDatabase database;
+    private DatabaseReference reference;
+
+    private RecyclerView liveRecyclerView;
+    private LiveScoresAdapter adapter;
+
     private Integer flag;
     private TextView text1;
 
@@ -31,8 +49,69 @@ public class MainPage extends Fragment {
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference("/data/livescores/");
+    }
+
+    private ChildEventListener getChildEventListener(){
+        return new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Log.e(TAG,"1");
+                if(dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        if(snapshot.exists()){
+                            LiveScoreData data = snapshot.getValue(LiveScoreData.class);
+                            data.setKey(snapshot.getKey());
+                            if(data.getisLive() == 1){
+                                adapter.add(data);
+                            }
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Log.e(TAG,"Called");
+                if(dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        if(snapshot.exists()){
+                            LiveScoreData data = snapshot.getValue(LiveScoreData.class);
+                            data.setKey(snapshot.getKey());
+                            if(data.getisLive() == 1){
+                                adapter.modify(data);
+                            }
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d(TAG,"Error:- Code: " + databaseError.getCode() + " Message: " + databaseError.getMessage());
+            }
+        };
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.main_page_fragment,container,false);
+        liveRecyclerView = view.findViewById(R.id.recycleView);
+        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        liveRecyclerView.setLayoutManager(manager);
         LinearLayout layout = view.findViewById(R.id.layout3);
         LinearLayout layout2 = view.findViewById(R.id.layout2);
         text1 = view.findViewById(R.id.live);
@@ -86,6 +165,9 @@ public class MainPage extends Fragment {
         layout.addView(effect,0);
        // layout2.addView(effect2,0);
         text1.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "fonts/Atami-Display.otf"));
+        adapter = new LiveScoresAdapter(getContext());
+        liveRecyclerView.setAdapter(adapter);
+        reference.addChildEventListener(getChildEventListener());
         return view;
 
     }

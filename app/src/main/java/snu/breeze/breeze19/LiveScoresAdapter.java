@@ -34,9 +34,11 @@ public class LiveScoresAdapter extends RecyclerView.Adapter<LiveScoresAdapter.Vi
 
     public void modify(LiveScoreData data){
         int index = isPresent(data);
-        liveScoreData.remove(index);
-        liveScoreData.add(index,data);
-        notifyDataSetChanged();
+        if(index != -1) {
+            liveScoreData.remove(index);
+            liveScoreData.add(index, data);
+            notifyDataSetChanged();
+        }
     }
 
     public void delete(LiveScoreData data){
@@ -46,7 +48,7 @@ public class LiveScoresAdapter extends RecyclerView.Adapter<LiveScoresAdapter.Vi
 
     private int isPresent(LiveScoreData data){
         for(int i=0;i<liveScoreData.size();i++){
-            if(liveScoreData.get(i).getKey() == data.getKey()){
+            if(liveScoreData.get(i).getKey().equals(data.getKey())){
                 return i;
             }
         }
