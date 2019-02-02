@@ -11,6 +11,14 @@
         android:layout_marginLeft="1dp"
         android:layout_marginRight="1dp"
         android:layout_height="match_parent" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:gravity="bottom|end"
+        android:layout_gravity="bottom|end"
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:paddingRight="20dp"
+        android:layout_height="wrap_content">
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
@@ -18,9 +26,21 @@
         android:layout_gravity="bottom|right"
         android:layout_marginLeft="1dp"
         android:layout_marginRight="1dp"
-        android:src="@drawable/ic_contact"
+        android:src="@drawable/ic_button"
         app:elevation="4dp"
         android:id="@+id/button1"
+        android:paddingBottom="5dp"
         app:layout_anchorGravity="bottom|right" />
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:src="@drawable/ic_button"
+        app:elevation="4dp"
+        android:id="@+id/button2"
+        app:layout_anchorGravity="bottom|right" />
+    </LinearLayout>
 
 </FrameLayout>

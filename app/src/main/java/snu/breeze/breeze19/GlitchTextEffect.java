@@ -1,5 +1,6 @@
 package snu.breeze.breeze19;
 
+import android.graphics.Typeface;
 import android.util.Log;
 import android.widget.FrameLayout;
 
@@ -130,8 +131,9 @@ import static android.support.constraint.Constraints.TAG;
         private TextView getTextView(int color){
             TextView textView = new TextView(getContext());
             textView.setGravity(gravity);
-            //textView.setTypeface(FontCache.get(fontFile,getContext()));
+            textView.setTypeface(Typeface.createFromAsset(getContext().getAssets(), fontFile));
             textView.setTextColor(color);
+            //textView.setBackgroundColor(Color.parseColor("#000000"));
             textView.setText(text);
             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
             return textView;

@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         app:expansion_headerIndicator="@id/headerIndicator"
         app:expansion_layout="@id/expansion_layout"
+        android:background="@color/dark_blue"
         app:expansion_toggleOnClick="true">
 
         <RelativeLayout
@@ -24,14 +25,14 @@
                 android:layout_width="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="125dp"
-                android:textColor="#000"
-                android:textSize="20sp"
+                android:textColor="#FFF"
+                android:textSize="27sp"
                 android:id="@+id/event_name"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_centerVertical="true"
-                android:textColor="#000"
+                android:textColor="#FFF"
                 android:layout_marginRight="30dp"
                 android:gravity="end"
                 android:textSize="10sp"
@@ -63,38 +64,33 @@
             android:id="@+id/container"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
+            android:paddingBottom="10dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="#0FF"
+            android:background="@color/yellow"
             android:weightSum="1"
-            android:layout_marginBottom="10dp"
             android:layout_width="match_parent">
 
             <mehdi.sakout.fancybuttons.FancyButton
                 android:id="@+id/live_scores_button"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="10dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:paddingTop="10dp"
-                fancy:fb_borderColor="#FFFFFF"
-                fancy:fb_borderWidth="1dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                fancy:fb_textSize ="25sp"
                 android:visibility="gone"
-                fancy:fb_defaultColor="#0b0b0b"
-                fancy:fb_focusColor="#9bd823"
-                fancy:fb_radius="0dp"
+                fancy:fb_defaultColor="@color/dark_blue"
+                fancy:fb_focusColor="#000"
                 fancy:fb_text="Get Live Scores!"
-                fancy:fb_textColor="#FFFFFF" />
+                fancy:fb_textColor="#FFFFF3" />
 
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginBottom="10dp"
-                android:textColor="#000"
+                android:textColor="#3477E6"
                 android:paddingTop="5dp"
-                android:textSize="13dp"
+                android:textSize="15dp"
                 android:id="@+id/event_details"/>
 
             <LinearLayout
@@ -107,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_gravity="bottom|end"
-                android:textColor="#000"
+                android:textColor="#3477E6"
                 android:textSize="11sp"
                 android:drawableLeft="@color/red"
                 android:id="@+id/event_venue" />
@@ -119,10 +115,11 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:gravity="right"
-                android:drawableTint="@android:color/holo_green_light"
+                android:drawableTint="@android:color/holo_green_dark"
                 android:drawableLeft="@drawable/ic_call"
+                    android:drawablePadding="2dp"
                 android:textSize="11sp"
-                android:textColor="#000"
+                android:textColor="#3477E6"
                 android:id="@+id/event_contact"/>
             </LinearLayout>
         </LinearLayout>

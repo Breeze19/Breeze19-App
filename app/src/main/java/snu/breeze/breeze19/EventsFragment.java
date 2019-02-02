@@ -42,6 +42,7 @@ public class EventsFragment extends Fragment {
         database = FirebaseDatabase.getInstance();
 //        Log.d(TAG,category);
         reference = database.getReference("/data/events/");
+        setRetainInstance(true);
     }
 
     private ChildEventListener getChildEventListener(){
@@ -98,6 +99,7 @@ public class EventsFragment extends Fragment {
         eventsView = (RecyclerView) view.findViewById(R.id.events_recycler_view);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity().getApplicationContext());
         eventsView.setLayoutManager(manager);
+        eventsView.setAdapter(adapter);
         DividerItemDecoration itemDecorator = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         itemDecorator.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.recyclyer_separator));
         eventsView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
@@ -107,7 +109,6 @@ public class EventsFragment extends Fragment {
 
     @Override
     public void onResume() {
-
         super.onResume();
         Log.d(TAG,"Creating events fragment");
         category = this.getArguments().getString("category");

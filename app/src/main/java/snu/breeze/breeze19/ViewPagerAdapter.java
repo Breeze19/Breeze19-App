@@ -60,7 +60,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
                         bundle = new Bundle();
                         myMessage = "technical";
                         bundle.putString("category", myMessage );
-                     fragment = new EventsFragment();
+                      fragment = new EventsFragment();
                         fragment.setArguments(bundle);
                         break;
             }
@@ -94,7 +94,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         } else {
             switch (position) {
                 case 0:
-                    title = "Flagship";
+                    title = "Pro Nights";
                     break;
                 case 1:
                     title = "Sports";

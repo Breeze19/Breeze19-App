@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 public class EventsPage extends Fragment {
     private final String TAG = EventsPage.class.getSimpleName();
 
@@ -19,14 +21,27 @@ public class EventsPage extends Fragment {
     private ViewPagerAdapter eventsViewPagerAdapter;
 
     @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
             View view = inflater.inflate(R.layout.events_page,container,false);
             Log.d(TAG,"Events page made");
             eventsTabLayout = (TabLayout) view.findViewById(R.id.events_tab_layout);
             eventsViewPager = (ViewPager) view.findViewById(R.id.events_view_pager);
             eventsViewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(),false);
-            eventsViewPager.setAdapter(eventsViewPagerAdapter);
-            eventsViewPager.setOffscreenPageLimit(10);
+           // eventsViewPager.setAdapter(eventsViewPagerAdapter);
+          //  eventsViewPager.setOffscreenPageLimit(10);
+
+            /* the ViewPager requires a minimum of 1 as OffscreenPageLimit */
+             int limit = (eventsViewPagerAdapter.getCount() > 1 ? eventsViewPagerAdapter.getCount() - 1 : 1);
+             eventsViewPager.setAdapter(eventsViewPagerAdapter);
+              Log.d("LIMIT", String.valueOf(limit));
+            eventsViewPager.setOffscreenPageLimit(limit);
             Log.d(TAG,"Events viewpager");
             eventsTabLayout.setupWithViewPager(eventsViewPager);
             return view;
@@ -35,10 +50,6 @@ public class EventsPage extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        eventsViewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(),false);
-        eventsViewPager.setAdapter(eventsViewPagerAdapter);
-        eventsViewPager.setOffscreenPageLimit(10);
-        Log.d("blehhhhh","Events viewpager");
-        eventsTabLayout.setupWithViewPager(eventsViewPager);
+
     }
 }

@@ -10,10 +10,10 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -97,6 +97,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         private TextView eventContact;
         private TextView eventDate;
         private TextView eventVenue;
+        private LinearLayout container;
 
 
         public ViewHolder(View view){
@@ -110,13 +111,14 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
             eventVenue = (TextView) view.findViewById(R.id.event_venue);
             eventContact = view.findViewById(R.id.event_contact);
             eventDate = view.findViewById(R.id.event_date);
+            container = view.findViewById(R.id.container);
         }
 
         public void bind(final EventsData data){
             float attendance = 0.0f;
-            Log.d(TAG,"happing");
             if("sports".equals(category)){
                 liveScores.setVisibility(View.VISIBLE);
+                liveScores.setCustomTextFont("Atami-Light.otf");
                 liveScores.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -125,6 +127,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
                         Context.startActivity(liveScoresIntent);
                     }
                 });
+                container.setPadding(0,0,0,0);
                 eventDate.setVisibility(View.GONE);
                 eventDate.setVisibility(View.GONE);
                 eventContact.setVisibility(View.GONE);

@@ -1,18 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-
     android:layout_width="match_parent"
     android:id="@+id/constraint"
-    android:background="#200944"
+    android:orientation="vertical"
+    android:background="#FC200944"
     android:layout_gravity="center"
     android:layout_height="match_parent">
-
-    <pl.droidsonroids.gif.GifImageView
+    <LinearLayout
+        android:paddingTop="12dp"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:id="@+id/gif"
-        android:src="@drawable/orangejustice"
+        android:paddingBottom="12dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/light_black"
+        android:id="@+id/layout3">
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:id="@+id/layout2"
+        android:layout_height="wrap_content">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:id="@+id/gif2"
+            android:paddingLeft="5dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/orangejustice"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFF"
+        android:text="Live Events"
+        android:id="@+id/live"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:drawablePadding="5dp"
+        android:drawableLeft="@drawable/circle"
+        android:textSize="50dp"
         />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/recycleView"
+        android:scrollbarStyle="outsideInset"
+        android:scrollbarFadeDuration="10"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

@@ -39,16 +39,16 @@ public class ContactPage extends Fragment {
         ListView listView=(ListView) view.findViewById(R.id.list);
         dataModels = new ArrayList<ContactPersonData>();
         dataModels.add(new ContactPersonData("Vignesh Shridhar", "Public Relations", "9677030542",R.drawable.vignesh));
-        dataModels.add(new ContactPersonData("Bhavya Agarwal", "Accommodation Lead", " 9956040085",R.drawable.ic_arrow));
-        dataModels.add(new ContactPersonData("Aishwarya Sathya", "Accommodation Lead", "9990900700",R.drawable.ic_arrow));
-        dataModels.add(new ContactPersonData("Vedansh Gupta ", "Accommodation Lead", "7523830194",R.drawable.ic_arrow));
-        dataModels.add(new ContactPersonData("Jashwant G ", "Hospitality", "9618655777",R.drawable.ic_arrow));
-        dataModels.add(new ContactPersonData("Malvika Singh","Hospitality","8965956461",R.drawable.ic_arrow));
-        dataModels.add(new ContactPersonData("Uroos", "Hospitality", "9582929614",R.drawable.ic_arrow));
+        dataModels.add(new ContactPersonData("Bhavya Agarwal", "Accommodation", " 9956040085",R.drawable.bhavya));
+        dataModels.add(new ContactPersonData("Aishwarya Sathya", "Accommodation", "9990900700",R.drawable.aishwarya));
+        dataModels.add(new ContactPersonData("Vedansh Gupta ", "Accommodation", "7523830194",R.drawable.ic_arrow));
+        dataModels.add(new ContactPersonData("Jashwant G ", "Hospitality", "9618655777",R.drawable.jaswant));
+        dataModels.add(new ContactPersonData("Malvika Singh","Hospitality","8965956461",R.drawable.malvika));
+        dataModels.add(new ContactPersonData("Uroos", "Hospitality", "9582929614",R.drawable.uroos));
         dataModels.add(new ContactPersonData("Balaji", "Transport", "7042049395",R.drawable.balaji));
         dataModels.add(new ContactPersonData("Kushagr Rastogi", "Transport", "9971507820",R.drawable.kushaghra));
         dataModels.add(new ContactPersonData("Sai Teja", "Transport", "9971139455",R.drawable.sai_teja));
-        dataModels.add(new ContactPersonData("Ashwin Johnson", "Security", "9599156452",R.drawable.ic_arrow));
+        dataModels.add(new ContactPersonData("Ashwin Johnson", "Security", "9599156452",R.drawable.ashwin));
         dataModels.add(new ContactPersonData("Ayush Khatri", "Security", "8130712208",R.drawable.ayush));
 
         adapter= new CustomAdapter(dataModels,getContext());

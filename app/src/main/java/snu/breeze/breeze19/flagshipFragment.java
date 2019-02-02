@@ -30,7 +30,7 @@ public class flagshipFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_flagship,container,false);
         text1 = view.findViewById(R.id.newsletter_text);
         text2 = view.findViewById(R.id.newsletter_text1);
-        Typeface custom_font = Typeface.createFromAsset(getContext().getAssets(), "fonts/Westmeath.ttf");
+        Typeface custom_font = Typeface.createFromAsset(getContext().getAssets(), "fonts/Atami-Display.otf");
 
         String text = "<font color=#FFFFFF>February</font><font color=#0b0b0b>8th</font>";
         String textt = "<font color=#0b0b0b>February</font><font color=#FFFFFF>8th</font>";

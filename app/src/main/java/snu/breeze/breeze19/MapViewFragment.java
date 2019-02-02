@@ -50,6 +50,7 @@ public class MapViewFragment extends Fragment {
     private GoogleMap googleMap;
     private String provider;
     private FloatingActionButton button1;
+    private FloatingActionButton button2;
     LocationManager locationManager;
     private LatLngBounds bounds;
     private Boolean mLocationPermissionGranted;
@@ -62,8 +63,8 @@ public class MapViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.mapview_fragmnet, container, false);
         button1 = rootView.findViewById(R.id.button1);
+        button2 = rootView.findViewById(R.id.button2);
         mMapView = (MapView) rootView.findViewById(R.id.mapView);
-
         mMapView.onCreate(savedInstanceState);
 
         mMapView.onResume(); // needed to get the map to display immediately
@@ -110,13 +111,13 @@ public class MapViewFragment extends Fragment {
                     Log.e(TAG, "Can't find style. Error: ", e);
                 }
                 final LatLngBounds.Builder builder = new LatLngBounds.Builder();
-                LatLng sydney = new LatLng(28.5267345,77.5731743);
-                LatLng sydney1 = new LatLng(28.525427, 77.575383);
-                LatLng sydney2 = new LatLng(28.526492, 77.572689);
-                LatLng sydney3 = new LatLng(28.524774, 77.572937);
-                final MarkerOptions marker1 =new MarkerOptions().position(sydney).title("title1").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-                final MarkerOptions marker2 =new MarkerOptions().position(sydney1).title("title2").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-                final MarkerOptions marker3 =new MarkerOptions().position(sydney2).title("title3").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+                final LatLng d_block = new LatLng(28.525377, 77.575448);
+                LatLng b_block = new LatLng(28.526261, 77.576537);
+                LatLng c_block = new LatLng(28.525974, 77.575863);
+                LatLng a_block = new LatLng(28.526721, 77.577139);
+                final MarkerOptions marker1 =new MarkerOptions().position(d_block).title("D Dlock").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+                final MarkerOptions marker2 =new MarkerOptions().position(b_block).title("B Block").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+                final MarkerOptions marker3 =new MarkerOptions().position(c_block).title("C Block").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
                 final MarkerOptions marker4 =new MarkerOptions().position(sydney3).title("title4").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
 
 //the include method will calculate the min and max bound.
@@ -152,7 +153,29 @@ public class MapViewFragment extends Fragment {
 //                double longitude = location.getLongitude();
         //LatLng myPosition = new LatLng(latitude, longitude);
 
-                mMap.animateCamera(cu);
+               // mMap.animateCamera(cu);
+                /*CameraPosition cameraPosition = new CameraPosition.Builder()
+                        .target(sydney)             // Sets the center of the map to Mountain View
+                        .bearing(90)                // Sets the orientation of the camera to east
+                        .tilt(30)                   // Sets the tilt of the camera to 30 degrees
+                        .build();                   // Creates a CameraPosition from the builder
+                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition)); */
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15));
+
+// Zoom in, animating the camera.
+                mMap.animateCamera(CameraUpdateFactory.zoomIn());
+
+// Zoom out to zoom level 10, animating with a duration of 2 seconds.
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
+
+// Construct a CameraPosition focusing on Mountain View and animate the camera to that position.
+                CameraPosition cameraPosition = new CameraPosition.Builder()
+                        .target(sydney)      // Sets the center of the map to Mountain View
+                        .zoom(17)                   // Sets the zoom
+                        .bearing(90)                // Sets the orientation of the camera to east
+                        .tilt(45)                   // Sets the tilt of the camera to 30 degrees
+                        .build();                   // Creates a CameraPosition from the builder
+                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
                 button1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -164,6 +187,19 @@ public class MapViewFragment extends Fragment {
 
                         CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
                         mMap.animateCamera(cu);
+                    }
+                });
+                button2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                       // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15));
+                        CameraPosition cameraPosition = new CameraPosition.Builder()
+                                .target(sydney)      // Sets the center of the map to Mountain View
+                                .zoom(17)                   // Sets the zoom
+                                .bearing(90)                // Sets the orientation of the camera to east
+                                .tilt(90)                   // Sets the tilt of the camera to 30 degrees
+                                .build();                   // Creates a CameraPosition from the builder
+                        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
                     }
                 });
                 // Position the map's camera near Sydney, Australia.
