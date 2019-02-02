@@ -1,8 +1,6 @@
 package snu.breeze.breeze19;
 
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
@@ -13,7 +11,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,10 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseDatabase database;
 
-    private ConnectivityManager connectivityManager;
     private SharedPreferences preferences;
 
-    private TabLayout tabLayout;
     private ViewPager viewPager;
     private ViewPagerAdapter pagerAdapter;
     MenuItem prevMenuItem;
@@ -47,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
         database = FirebaseDatabase.getInstance();
-        connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
         preferences = getSharedPreferences("breeze19",0);
         viewPager =  findViewById(R.id.view_pager);
         saveFCMToken();
@@ -137,20 +131,5 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, "FCM token already saved to DB");
             }
         }
-    }
-
-    private boolean isConnected(){
-        boolean connected = false;
-        if(connectivityManager != null){
-            NetworkInfo[] networkInfo = connectivityManager.getAllNetworkInfo();
-            for(NetworkInfo info : networkInfo){
-                if((info.getTypeName().equalsIgnoreCase("WIFI") ||
-                        info.getTypeName().equalsIgnoreCase("MOBILE")) &&
-                        info.isConnected() && info.isAvailable()){
-                    connected = true;
-                }
-            }
-        }
-        return connected;
     }
 }

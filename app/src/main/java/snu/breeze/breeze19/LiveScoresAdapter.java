@@ -1,6 +1,7 @@
 package snu.breeze.breeze19;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -77,6 +78,7 @@ public class LiveScoresAdapter extends RecyclerView.Adapter<LiveScoresAdapter.Vi
         private ScoreAdapter adapter1;
         private ScoreAdapter adapter2;
 
+        private TextView sportName;
         private TextView teamname1;
         private TextView teamname2;
         private Odometer score1;
@@ -84,6 +86,7 @@ public class LiveScoresAdapter extends RecyclerView.Adapter<LiveScoresAdapter.Vi
 
         public ViewHolder(View view){
             super(view);
+            sportName = (TextView) view.findViewById(R.id.sportname);
             teamname1 = (TextView) view.findViewById(R.id.team1);
             teamname2 = (TextView) view.findViewById(R.id.team2);
             score1 = (Odometer) view.findViewById(R.id.score1);
@@ -96,6 +99,27 @@ public class LiveScoresAdapter extends RecyclerView.Adapter<LiveScoresAdapter.Vi
             DisplayMetrics dimensions = context.getResources().getDisplayMetrics();
             int width = dimensions.widthPixels;
             int height = dimensions.heightPixels;
+            switch(data.getSportName()){
+                case "football" :
+                    sportName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_footbalal,0,0,0);
+                    break;
+
+                case "basketball" :
+                    sportName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_basketball,0,0,0);
+                    break;
+                case "volleyball" :
+                    sportName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_volleyball,0,0,0);
+                    break;
+
+                case "tennis" :
+                    sportName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_tennis,0,0,0);
+                    break;
+
+                case "badminton" :
+                    sportName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_badminton,0,0,0);
+                    break;
+            }
+            sportName.setText(data.getSportName().substring(0,1).toUpperCase() + data.getSportName().substring(1));
             teamname1.setWidth(width/5);
             teamname2.setWidth(width/5);
             teamname1.setText(data.getTeam1());
