@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
                         DatabaseReference reference = database.getReference(Constants.FCM_TOKEN_FIREBASE_PATH).push();
                         SharedPreferences.Editor editor = preferences.edit();
                         editor.putString(Constants.FCM_TOKEN_KEY, instanceIdResult.getToken());
+                        editor.putString(Constants.FCM_TOKEN_FIREBASE_KEY,reference.getKey());
                         editor.apply();
                         Log.e(TAG, Constants.FCM_TOKEN_KEY);
                         reference.setValue(instanceIdResult.getToken()).addOnCompleteListener(new OnCompleteListener<Void>() {

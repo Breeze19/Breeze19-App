@@ -76,180 +76,7 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-        mMapView.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(final GoogleMap mMap) {
-                googleMap = mMap;
-                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                }
-
-
-                Log.e(TAG, "Map is ready");
-
-                //googleMap.setMyLocationEnabled(true);
-
-                // For dropping a marker at a point on the Ma
-
-                try {
-                    // Customise the styling of the base map using a JSON object defined
-                    // in a raw resource file.
-                    boolean success = googleMap.setMapStyle(
-                            MapStyleOptions.loadRawResourceStyle(
-                                    getContext(), R.raw.style_json));
-                    Log.e(TAG, String.valueOf(success));
-                    if (!success) {
-                        Log.e(TAG, "Style parsing failed.");
-                    }
-                } catch (Resources.NotFoundException e) {
-                    Log.e(TAG, "Can't find style. Error: ", e);
-                }
-                final LatLngBounds.Builder builder = new LatLngBounds.Builder();
-                final LatLng d_block = new LatLng(28.525377, 77.575448);
-                LatLng b_block = new LatLng(28.526261, 77.576537);
-                LatLng c_block = new LatLng(28.525974, 77.575863);
-                LatLng a_block = new LatLng(28.526721, 77.577139);
-                LatLng library = new LatLng(28.524945, 77.574395);
-                LatLng lake = new LatLng(28.525177, 77.576923);
-                LatLng ab_atrium = new LatLng(28.526372, 77.576805);
-                LatLng mountSnu = new LatLng(28.526170, 77.575117);
-                LatLng central_vista = new LatLng(28.525759, 77.574609);
-                LatLng dh2 = new LatLng(28.524473, 77.570245);
-                LatLng football = new LatLng(28.523075, 77.571815);
-                LatLng ISC = new LatLng(28.521413, 77.571175);
-                LatLng tennis = new LatLng(28.524066, 77.571332);
-                LatLng volleyball = new LatLng(28.524520, 77.571674);
-                LatLng baskbetball = new LatLng(28.524132, 77.571147);
-                final LatLng main_stage = new LatLng(28.526047, 77.571124);
-
-                final MarkerOptions marker1 =new MarkerOptions().position(d_block).title("D Dlock").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-                final MarkerOptions marker2 =new MarkerOptions().position(b_block).title("B Block").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-                final MarkerOptions marker3 =new MarkerOptions().position(c_block).title("C Block").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-                final MarkerOptions marker4 =new MarkerOptions().position(a_block).title("A Block").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-                final MarkerOptions marker5 =new MarkerOptions().position(library).title("Library").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-                final MarkerOptions marker6 =new MarkerOptions().position(lake).title("Lake").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-                final MarkerOptions marker7 =new MarkerOptions().position(ab_atrium).title("A-B Atrium").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-                final MarkerOptions marker8 =new MarkerOptions().position(mountSnu).title("Mount SNU").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-                final MarkerOptions marker9 =new MarkerOptions().position(central_vista).title("Central Vista").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-                final MarkerOptions marker10 =new MarkerOptions().position(dh2).title("DH2").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-                final MarkerOptions marker11=new MarkerOptions().position(football).title("Football Field").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-                final MarkerOptions marker12 =new MarkerOptions().position(ISC).title("Indoor Sports Complex").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-                final MarkerOptions marker13 =new MarkerOptions().position(tennis).title("Tennis Court").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-                final MarkerOptions marker14 =new MarkerOptions().position(volleyball).title("Volleyball Court").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-                final MarkerOptions marker15 =new MarkerOptions().position(baskbetball).title("Basketball Court").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-                final MarkerOptions marker16 =new MarkerOptions().position(main_stage).title("Main Stage").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-
-//the include method will calculate the min and max bound.
-                builder.include(marker1.getPosition());
-                builder.include(marker2.getPosition());
-                builder.include(marker3.getPosition());
-                builder.include(marker4.getPosition());
-                builder.include(marker5.getPosition());
-                builder.include(marker6.getPosition());
-                builder.include(marker7.getPosition());
-                builder.include(marker8.getPosition());
-                builder.include(marker9.getPosition());
-                builder.include(marker10.getPosition());
-                builder.include(marker11.getPosition());
-                builder.include(marker12.getPosition());
-                builder.include(marker13.getPosition());
-                builder.include(marker14.getPosition());
-                builder.include(marker15.getPosition());
-                builder.include(marker16.getPosition());
-
-                bounds = builder.build();
-
-
-                int width = getResources().getDisplayMetrics().widthPixels;
-                int height = getResources().getDisplayMetrics().heightPixels;
-                int padding = (int) (width * 0.10); // offset from edges of the map 10% of screen
-
-                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
-                Marker marker22 = googleMap.addMarker(marker16);
-
-                marker22.showInfoWindow();
-
-//                googleMap.setMyLocationEnabled(true);
-      //          Criteria criteria = new Criteria();
-    //            locationManager = (LocationManager) getContext().getSystemService(LOCATION_SERVICE);
-  //              provider = locationManager.getBestProvider(criteria, true);
-//                Location location = locationManager.getLastKnownLocation(provider);
-//                locationManager.requestLocationUpdates(bestProvider, 1000, 0, (LocationListener) getContext());
-
-//                double latitude = location.getLatitude();
-//                double longitude = location.getLongitude();
-        //LatLng myPosition = new LatLng(latitude, longitude);
-
-               // mMap.animateCamera(cu);
-                /*CameraPosition cameraPosition = new CameraPosition.Builder()
-                        .target(sydney)             // Sets the center of the map to Mountain View
-                        .bearing(90)                // Sets the orientation of the camera to east
-                        .tilt(30)                   // Sets the tilt of the camera to 30 degrees
-                        .build();                   // Creates a CameraPosition from the builder
-                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition)); */
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(main_stage, 15));
-
-// Zoom in, animating the camera.
-                mMap.animateCamera(CameraUpdateFactory.zoomIn());
-
-// Zoom out to zoom level 10, animating with a duration of 2 seconds.
-                mMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
-
-// Construct a CameraPosition focusing on Mountain View and animate the camera to that position.
-                CameraPosition cameraPosition = new CameraPosition.Builder()
-                        .target(main_stage)      // Sets the center of the map to Mountain View
-                        .zoom(17)                   // Sets the zoom
-                        .bearing(90)                // Sets the orientation of the camera to east
-                        .tilt(45)                   // Sets the tilt of the camera to 30 degrees
-                        .build();                   // Creates a CameraPosition from the builder
-                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-                button1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        bounds = builder.build();
-
-                        int width = getResources().getDisplayMetrics().widthPixels;
-                        int height = getResources().getDisplayMetrics().heightPixels;
-                        int padding = (int) (width * 0.10); // offset from edges of the map 10% of screen
-
-                        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
-                        mMap.animateCamera(cu);
-                    }
-                });
-                button2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                       // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15));
-                        CameraPosition cameraPosition = new CameraPosition.Builder()
-                                .target(main_stage)      // Sets the center of the map to Mountain View
-                                .zoom(17)                   // Sets the zoom
-                                .bearing(90)                // Sets the orientation of the camera to east
-                                .tilt(90)                   // Sets the tilt of the camera to 30 degrees
-                                .build();                   // Creates a CameraPosition from the builder
-                        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-                    }
-                });
-                // Position the map's camera near Sydney, Australia.
-                //googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(28.5267345,77.5731743)));
-                //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(markerLatLng, DEFAULT_ZOOM));
-               // googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker Title").snippet("Marker Description"));
-                //googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(getContext(), R.raw.style_json));
-
-
-
-            }
-        });
-
         checkLocationPermission();
-
         return rootView;
     }
 
@@ -471,11 +298,11 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
             criteria.setPowerRequirement(Criteria.POWER_LOW);
             locationManager = (LocationManager) getContext().getSystemService(LOCATION_SERVICE);
             provider = locationManager.getBestProvider(criteria, true);
-    //        locationManager.requestLocationUpdates(provider, 1000, 0, this);
-//            Location location = locationManager.getLastKnownLocation(provider);
- //           double latitude = location.getLatitude();
-  //          double longitude = location.getLongitude();
-      //      LatLng myPosition = new LatLng(latitude, longitude);
+            locationManager.requestLocationUpdates(provider, 1000, 0, this);
+            Location location = locationManager.getLastKnownLocation(provider);
+            double latitude = location.getLatitude();
+            double longitude = location.getLongitude();
+            LatLng myPosition = new LatLng(latitude, longitude);
 
             googleMap.animateCamera(cu);
             button1.setOnClickListener(new View.OnClickListener() {
