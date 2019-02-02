@@ -36,8 +36,6 @@ public class flagshipFragment extends Fragment {
         String textt = "<font color=#0b0b0b>February</font><font color=#FFFFFF>8th</font>";
         text1.setText(Html.fromHtml(text));
         text2.setText(Html.fromHtml(textt));
-        final TickerView tickerView = view.findViewById(R.id.tickerView);
-        tickerView.setCharacterLists("0123");
         text1.setTypeface(custom_font);
         text2.setTypeface(custom_font);
         Log.d(TAG,"flagship page made");

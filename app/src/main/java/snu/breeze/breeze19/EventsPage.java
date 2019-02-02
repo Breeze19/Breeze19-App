@@ -24,7 +24,7 @@ public class EventsPage extends Fragment {
             Log.d(TAG,"Events page made");
             eventsTabLayout = (TabLayout) view.findViewById(R.id.events_tab_layout);
             eventsViewPager = (ViewPager) view.findViewById(R.id.events_view_pager);
-            eventsViewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(),false);
+            eventsViewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(),false);
             eventsViewPager.setAdapter(eventsViewPagerAdapter);
             eventsViewPager.setOffscreenPageLimit(10);
             Log.d(TAG,"Events viewpager");
@@ -32,4 +32,13 @@ public class EventsPage extends Fragment {
             return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        eventsViewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(),false);
+        eventsViewPager.setAdapter(eventsViewPagerAdapter);
+        eventsViewPager.setOffscreenPageLimit(10);
+        Log.d("blehhhhh","Events viewpager");
+        eventsTabLayout.setupWithViewPager(eventsViewPager);
+    }
 }

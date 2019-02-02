@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -131,6 +132,12 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
                 eventVenue.setVisibility(View.GONE);
             }
             ArrayList<String> details_here;
+            Typeface custom_font = Typeface.createFromAsset(Context.getAssets(), "fonts/Biko_Regular.otf");
+            eventName.setTypeface(custom_font);
+            eventDetails.setTypeface(custom_font);
+            eventDate.setTypeface(custom_font);
+            eventVenue.setTypeface(custom_font);
+            eventContact.setTypeface(custom_font);
             eventName.setText(((EventsData) data).geteventsName());
             DisplayMetrics displayMetrics =Context.getResources().getDisplayMetrics();
             int height = displayMetrics.heightPixels;

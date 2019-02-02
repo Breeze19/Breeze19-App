@@ -87,7 +87,6 @@ public class MapViewFragment extends Fragment {
                     //                                          int[] grantResults)
                     // to handle the case where the user grants the permission. See the documentation
                     // for ActivityCompat#requestPermissions for more details.
-                    checkLocationPermission();
                 }
 
 
@@ -142,17 +141,16 @@ public class MapViewFragment extends Fragment {
                 marker22.showInfoWindow();
                 marker33.showInfoWindow();
                 marker44.showInfoWindow();
-
-                googleMap.setMyLocationEnabled(true);
-                Criteria criteria = new Criteria();
-                locationManager = (LocationManager) getContext().getSystemService(LOCATION_SERVICE);
-                provider = locationManager.getBestProvider(criteria, true);
-                Location location = locationManager.getLastKnownLocation(provider);
+//                googleMap.setMyLocationEnabled(true);
+      //          Criteria criteria = new Criteria();
+    //            locationManager = (LocationManager) getContext().getSystemService(LOCATION_SERVICE);
+  //              provider = locationManager.getBestProvider(criteria, true);
+//                Location location = locationManager.getLastKnownLocation(provider);
 //                locationManager.requestLocationUpdates(bestProvider, 1000, 0, (LocationListener) getContext());
 
-                double latitude = location.getLatitude();
-                double longitude = location.getLongitude();
-                LatLng myPosition = new LatLng(latitude, longitude);
+//                double latitude = location.getLatitude();
+//                double longitude = location.getLongitude();
+        //LatLng myPosition = new LatLng(latitude, longitude);
 
                 mMap.animateCamera(cu);
                 button1.setOnClickListener(new View.OnClickListener() {

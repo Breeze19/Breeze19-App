@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "snu.breeze.breeze19"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -37,6 +37,7 @@ dependencies {
 
 
     implementation 'com.android.volley:volley:1.1.1'
+    implementation 'xyz.pinaki.android:wheelticker:1.0.1'
 
     implementation 'com.google.android.gms:play-services-maps:16.0.0'
     implementation 'com.google.android.gms:play-services-places:16.0.0'
