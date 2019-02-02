@@ -99,6 +99,7 @@ public class EventsFragment extends Fragment {
         eventsView = (RecyclerView) view.findViewById(R.id.events_recycler_view);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity().getApplicationContext());
         eventsView.setLayoutManager(manager);
+        if(adapter!=null)
         eventsView.setAdapter(adapter);
         DividerItemDecoration itemDecorator = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         itemDecorator.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.recyclyer_separator));
@@ -110,13 +111,13 @@ public class EventsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.d(TAG,"Creating events fragment");
+  /*      Log.d(TAG,"Creating events fragment");
         category = this.getArguments().getString("category");
         LinearLayoutManager manager = new LinearLayoutManager(getActivity().getApplicationContext());
         eventsView.setLayoutManager(manager);
         DividerItemDecoration itemDecorator = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         itemDecorator.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.recyclyer_separator));
         eventsView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        reference.addChildEventListener(getChildEventListener());
+        reference.addChildEventListener(getChildEventListener()); */
     }
 }
