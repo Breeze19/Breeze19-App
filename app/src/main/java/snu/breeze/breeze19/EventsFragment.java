@@ -104,4 +104,18 @@ public class EventsFragment extends Fragment {
         reference.addChildEventListener(getChildEventListener());
         return view;
     }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+        Log.d(TAG,"Creating events fragment");
+        category = this.getArguments().getString("category");
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity().getApplicationContext());
+        eventsView.setLayoutManager(manager);
+        DividerItemDecoration itemDecorator = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+        itemDecorator.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.recyclyer_separator));
+        eventsView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        reference.addChildEventListener(getChildEventListener());
+    }
 }

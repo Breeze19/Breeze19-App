@@ -14,6 +14,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.robinhood.ticker.TickerUtils;
+import com.robinhood.ticker.TickerView;
+
 import org.w3c.dom.Text;
 
 public class flagshipFragment extends Fragment {
@@ -38,5 +41,8 @@ public class flagshipFragment extends Fragment {
         Log.d(TAG,"flagship page made");
         return view;
     }
+
+
+
 
 }
