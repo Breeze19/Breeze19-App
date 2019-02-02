@@ -117,16 +117,53 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
                 LatLng b_block = new LatLng(28.526261, 77.576537);
                 LatLng c_block = new LatLng(28.525974, 77.575863);
                 LatLng a_block = new LatLng(28.526721, 77.577139);
+                LatLng library = new LatLng(28.524945, 77.574395);
+                LatLng lake = new LatLng(28.525177, 77.576923);
+                LatLng ab_atrium = new LatLng(28.526372, 77.576805);
+                LatLng mountSnu = new LatLng(28.526170, 77.575117);
+                LatLng central_vista = new LatLng(28.525759, 77.574609);
+                LatLng dh2 = new LatLng(28.524473, 77.570245);
+                LatLng football = new LatLng(28.523075, 77.571815);
+                LatLng ISC = new LatLng(28.521413, 77.571175);
+                LatLng tennis = new LatLng(28.524066, 77.571332);
+                LatLng volleyball = new LatLng(28.524520, 77.571674);
+                LatLng baskbetball = new LatLng(28.524132, 77.571147);
+                final LatLng main_stage = new LatLng(28.526047, 77.571124);
+
                 final MarkerOptions marker1 =new MarkerOptions().position(d_block).title("D Dlock").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
                 final MarkerOptions marker2 =new MarkerOptions().position(b_block).title("B Block").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
                 final MarkerOptions marker3 =new MarkerOptions().position(c_block).title("C Block").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
                 final MarkerOptions marker4 =new MarkerOptions().position(a_block).title("A Block").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+                final MarkerOptions marker5 =new MarkerOptions().position(library).title("Library").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+                final MarkerOptions marker6 =new MarkerOptions().position(lake).title("Lake").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+                final MarkerOptions marker7 =new MarkerOptions().position(ab_atrium).title("A-B Atrium").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+                final MarkerOptions marker8 =new MarkerOptions().position(mountSnu).title("Mount SNU").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+                final MarkerOptions marker9 =new MarkerOptions().position(central_vista).title("Central Vista").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+                final MarkerOptions marker10 =new MarkerOptions().position(dh2).title("DH2").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+                final MarkerOptions marker11=new MarkerOptions().position(football).title("Football Field").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+                final MarkerOptions marker12 =new MarkerOptions().position(ISC).title("Indoor Sports Complex").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+                final MarkerOptions marker13 =new MarkerOptions().position(tennis).title("Tennis Court").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+                final MarkerOptions marker14 =new MarkerOptions().position(volleyball).title("Volleyball Court").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+                final MarkerOptions marker15 =new MarkerOptions().position(baskbetball).title("Basketball Court").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+                final MarkerOptions marker16 =new MarkerOptions().position(main_stage).title("Main Stage").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
 
 //the include method will calculate the min and max bound.
                 builder.include(marker1.getPosition());
                 builder.include(marker2.getPosition());
                 builder.include(marker3.getPosition());
                 builder.include(marker4.getPosition());
+                builder.include(marker5.getPosition());
+                builder.include(marker6.getPosition());
+                builder.include(marker7.getPosition());
+                builder.include(marker8.getPosition());
+                builder.include(marker9.getPosition());
+                builder.include(marker10.getPosition());
+                builder.include(marker11.getPosition());
+                builder.include(marker12.getPosition());
+                builder.include(marker13.getPosition());
+                builder.include(marker14.getPosition());
+                builder.include(marker15.getPosition());
+                builder.include(marker16.getPosition());
 
                 bounds = builder.build();
 
@@ -136,14 +173,10 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
                 int padding = (int) (width * 0.10); // offset from edges of the map 10% of screen
 
                 CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
-                Marker marker11 = googleMap.addMarker(marker1);
-                Marker marker22 = googleMap.addMarker(marker2);
-                Marker marker33 = googleMap.addMarker(marker3);
-                Marker marker44 =  googleMap.addMarker(marker4);
-                marker11.showInfoWindow();
+                Marker marker22 = googleMap.addMarker(marker16);
+
                 marker22.showInfoWindow();
-                marker33.showInfoWindow();
-                marker44.showInfoWindow();
+
 //                googleMap.setMyLocationEnabled(true);
       //          Criteria criteria = new Criteria();
     //            locationManager = (LocationManager) getContext().getSystemService(LOCATION_SERVICE);
@@ -162,7 +195,7 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
                         .tilt(30)                   // Sets the tilt of the camera to 30 degrees
                         .build();                   // Creates a CameraPosition from the builder
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition)); */
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(d_block, 15));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(main_stage, 15));
 
 // Zoom in, animating the camera.
                 mMap.animateCamera(CameraUpdateFactory.zoomIn());
@@ -172,7 +205,7 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
 
 // Construct a CameraPosition focusing on Mountain View and animate the camera to that position.
                 CameraPosition cameraPosition = new CameraPosition.Builder()
-                        .target(d_block)      // Sets the center of the map to Mountain View
+                        .target(main_stage)      // Sets the center of the map to Mountain View
                         .zoom(17)                   // Sets the zoom
                         .bearing(90)                // Sets the orientation of the camera to east
                         .tilt(45)                   // Sets the tilt of the camera to 30 degrees
@@ -196,7 +229,7 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
                     public void onClick(View v) {
                        // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15));
                         CameraPosition cameraPosition = new CameraPosition.Builder()
-                                .target(d_block)      // Sets the center of the map to Mountain View
+                                .target(main_stage)      // Sets the center of the map to Mountain View
                                 .zoom(17)                   // Sets the zoom
                                 .bearing(90)                // Sets the orientation of the camera to east
                                 .tilt(90)                   // Sets the tilt of the camera to 30 degrees
@@ -352,38 +385,82 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
             } catch (Resources.NotFoundException e) {
                 Log.e(TAG, "Can't find style. Error: ", e);
             }
-            final LatLngBounds.Builder builder = new LatLngBounds.Builder();
-            LatLng sydney = new LatLng(28.5267345,77.5731743);
-            LatLng sydney1 = new LatLng(28.525427, 77.575383);
-            LatLng sydney2 = new LatLng(28.526492, 77.572689);
-            LatLng sydney3 = new LatLng(28.524774, 77.572937);
-            final MarkerOptions marker1 =new MarkerOptions().position(sydney).title("title1").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-            final MarkerOptions marker2 =new MarkerOptions().position(sydney1).title("title2").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-            final MarkerOptions marker3 =new MarkerOptions().position(sydney2).title("title3").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-            final MarkerOptions marker4 =new MarkerOptions().position(sydney3).title("title4").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+        final LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        final LatLng d_block = new LatLng(28.525377, 77.575448);
+        LatLng b_block = new LatLng(28.526261, 77.576537);
+        LatLng c_block = new LatLng(28.525974, 77.575863);
+        LatLng a_block = new LatLng(28.526721, 77.577139);
+        LatLng library = new LatLng(28.524945, 77.574395);
+        LatLng lake = new LatLng(28.525177, 77.576923);
+        LatLng ab_atrium = new LatLng(28.526372, 77.576805);
+        LatLng mountSnu = new LatLng(28.526170, 77.575117);
+        LatLng central_vista = new LatLng(28.525759, 77.574609);
+        LatLng dh2 = new LatLng(28.524473, 77.570245);
+        LatLng football = new LatLng(28.523075, 77.571815);
+        LatLng ISC = new LatLng(28.521413, 77.571175);
+        LatLng tennis = new LatLng(28.524066, 77.571332);
+        LatLng volleyball = new LatLng(28.524520, 77.571674);
+        LatLng baskbetball = new LatLng(28.524132, 77.571147);
+        final LatLng main_stage = new LatLng(28.526047, 77.571124);
+
+        final MarkerOptions marker1 =new MarkerOptions().position(d_block).title("D Dlock").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+        final MarkerOptions marker2 =new MarkerOptions().position(b_block).title("B Block").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+        final MarkerOptions marker3 =new MarkerOptions().position(c_block).title("C Block").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+        final MarkerOptions marker4 =new MarkerOptions().position(a_block).title("A Block").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+        final MarkerOptions marker5 =new MarkerOptions().position(library).title("Library").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+        final MarkerOptions marker6 =new MarkerOptions().position(lake).title("Lake").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+        final MarkerOptions marker7 =new MarkerOptions().position(ab_atrium).title("A-B Atrium").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+        final MarkerOptions marker8 =new MarkerOptions().position(mountSnu).title("Mount SNU").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+        final MarkerOptions marker9 =new MarkerOptions().position(central_vista).title("Central Vista").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+        final MarkerOptions marker10 =new MarkerOptions().position(dh2).title("DH2").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+        final MarkerOptions marker11=new MarkerOptions().position(football).title("Football Field").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+        final MarkerOptions marker12 =new MarkerOptions().position(ISC).title("Indoor Sports Complex").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+        final MarkerOptions marker13 =new MarkerOptions().position(tennis).title("Tennis Court").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+        final MarkerOptions marker14 =new MarkerOptions().position(volleyball).title("Volleyball Court").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+        final MarkerOptions marker15 =new MarkerOptions().position(baskbetball).title("Basketball Court").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+        final MarkerOptions marker16 =new MarkerOptions().position(main_stage).title("Main Stage").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
 
 //the include method will calculate the min and max bound.
-            builder.include(marker1.getPosition());
-            builder.include(marker2.getPosition());
-            builder.include(marker3.getPosition());
-            builder.include(marker4.getPosition());
+        builder.include(marker1.getPosition());
+        builder.include(marker2.getPosition());
+        builder.include(marker3.getPosition());
+        builder.include(marker4.getPosition());
+        builder.include(marker5.getPosition());
+        builder.include(marker6.getPosition());
+        builder.include(marker7.getPosition());
+        builder.include(marker8.getPosition());
+        builder.include(marker9.getPosition());
+        builder.include(marker10.getPosition());
+        builder.include(marker11.getPosition());
+        builder.include(marker12.getPosition());
+        builder.include(marker13.getPosition());
+        builder.include(marker14.getPosition());
+        builder.include(marker15.getPosition());
+        builder.include(marker16.getPosition());
 
-            bounds = builder.build();
-
+        bounds = builder.build();
 
             int width = getResources().getDisplayMetrics().widthPixels;
             int height = getResources().getDisplayMetrics().heightPixels;
             int padding = (int) (width * 0.10); // offset from edges of the map 10% of screen
 
             CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
-            Marker marker11 = googleMap.addMarker(marker1);
+            Marker marker21 = googleMap.addMarker(marker1);
             Marker marker22 = googleMap.addMarker(marker2);
             Marker marker33 = googleMap.addMarker(marker3);
             Marker marker44 =  googleMap.addMarker(marker4);
-            marker11.showInfoWindow();
-            marker22.showInfoWindow();
-            marker33.showInfoWindow();
-            marker44.showInfoWindow();
+            Marker marker45 =  googleMap.addMarker(marker5);
+            Marker marker46 =  googleMap.addMarker(marker6);
+            Marker marker47 =  googleMap.addMarker(marker7);
+            Marker marker48 =  googleMap.addMarker(marker8);
+            Marker marker49 =  googleMap.addMarker(marker9);
+            Marker marker83 =  googleMap.addMarker(marker10);
+            Marker marker85 =  googleMap.addMarker(marker11);
+            Marker marker86 =  googleMap.addMarker(marker12);
+            Marker marker90 =  googleMap.addMarker(marker13);
+            Marker marker460 =  googleMap.addMarker(marker14);
+            Marker marker461 =  googleMap.addMarker(marker15);
+            Marker marker462 =  googleMap.addMarker(marker16);
 
             googleMap.setMyLocationEnabled(true);
             Criteria criteria = new Criteria();
@@ -394,11 +471,11 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
             criteria.setPowerRequirement(Criteria.POWER_LOW);
             locationManager = (LocationManager) getContext().getSystemService(LOCATION_SERVICE);
             provider = locationManager.getBestProvider(criteria, true);
-            locationManager.requestLocationUpdates(provider, 1000, 0, this);
-            Location location = locationManager.getLastKnownLocation(provider);
-            double latitude = location.getLatitude();
-            double longitude = location.getLongitude();
-            LatLng myPosition = new LatLng(latitude, longitude);
+    //        locationManager.requestLocationUpdates(provider, 1000, 0, this);
+//            Location location = locationManager.getLastKnownLocation(provider);
+ //           double latitude = location.getLatitude();
+  //          double longitude = location.getLongitude();
+      //      LatLng myPosition = new LatLng(latitude, longitude);
 
             googleMap.animateCamera(cu);
             button1.setOnClickListener(new View.OnClickListener() {
