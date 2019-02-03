@@ -57,7 +57,6 @@ public class FCMService extends FirebaseMessagingService {
     }
 
     private void sendNotification(Map<String,String> data){
-        //Display Notifications here
         Bundle bundle = new Bundle();
         for(Map.Entry<String,String> entry : data.entrySet()){
             Log.e(TAG,entry.getValue());
@@ -69,8 +68,8 @@ public class FCMService extends FirebaseMessagingService {
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel mChannel = new NotificationChannel("fcm_channel", "", importance);
-            mChannel.setDescription("Notification channel from Breeze");
+            NotificationChannel mChannel = new NotificationChannel("fcm_channel", "Snuhacks_fcm", importance);
+            mChannel.setDescription("Notification channel from Snuhacks");
             mChannel.enableLights(true);
             mChannel.setLightColor(R.color.red);
             mChannel.enableVibration(true);
@@ -81,8 +80,14 @@ public class FCMService extends FirebaseMessagingService {
         contentView.setTextViewText(R.id.title,(bundle.getString("heading")));
         contentView.setTextViewText(R.id.text, bundle.getString("content").substring(0,Math.min(bundle.getString("content").length(),40)));
 
+     /*   NotificationCompat.Builder builder = new NotificationCompat.Builder(this,"fcm_channel")
+                .setSmallIcon(R.mipmap.iconfinal)
+                .setContentTitle(bundle.getString("heading"))
+                .setContentText(bundle.getString("content").substring(0,Math.min(bundle.getString("content").length(),40)) + "...")
+                .setAutoCancel(true)
+                .setContentIntent(pendingIntent); */
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this,"fcm_channel")
-                .setSmallIcon(R.drawable.ic_location)
+                .setSmallIcon(R.drawable.ic_arrow)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 .setContent(contentView);
