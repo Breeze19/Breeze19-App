@@ -58,8 +58,8 @@
         android:id="@+id/recycleView"
         android:scrollbarStyle="outsideInset"
         android:scrollbarFadeDuration="10"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"/>
 
-    </android.support.v7.widget.RecyclerView>
+
 
 </LinearLayout>

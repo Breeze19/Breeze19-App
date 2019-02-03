@@ -61,6 +61,7 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     public static int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private boolean mPermissionDenied = false;
+    private boolean isMapLoaded = false;
 
 
     @Override
@@ -289,7 +290,7 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
             Marker marker460 =  googleMap.addMarker(marker14);
             Marker marker461 =  googleMap.addMarker(marker15);
             Marker marker462 =  googleMap.addMarker(marker16);
-
+            isMapLoaded = true;
             googleMap.setMyLocationEnabled(true);
             Criteria criteria = new Criteria();
             criteria.setAccuracy(Criteria.ACCURACY_FINE);
@@ -330,6 +331,7 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
                     googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
                 }
             });
+
             button1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -349,6 +351,36 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
             //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(markerLatLng, DEFAULT_ZOOM));
             // googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker Title").snippet("Marker Description"));
             //googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(getContext(), R.raw.style_json));
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isFragmentVisible){
+        super.setUserVisibleHint(true);
+        if(this.isVisible()){
+            if(isFragmentVisible && isMapLoaded){
+                try {
+                    Criteria criteria = new Criteria();
+                    criteria.setAccuracy(Criteria.ACCURACY_FINE);
+                    criteria.setAltitudeRequired(true);
+                    criteria.setBearingRequired(true);
+                    criteria.setCostAllowed(true);
+                    criteria.setPowerRequirement(Criteria.POWER_LOW);
+                    locationManager = (LocationManager) getContext().getSystemService(LOCATION_SERVICE);
+                    provider = locationManager.getBestProvider(criteria, true);
+                    locationManager.requestLocationUpdates(provider, 1000, 0, this);
+                    Location location = locationManager.getLastKnownLocation(provider);
+                    if (location != null) {
+                        double latitude = location.getLatitude();
+                        double longitude = location.getLongitude();
+                        LatLng myPosition = new LatLng(latitude, longitude);
+                    } else {
+                        Toast.makeText(getContext(), "Current location not available!", Toast.LENGTH_SHORT).show();
+                    }
+                } catch(SecurityException exception){
+                    Log.e(TAG,"SecurityException: " + exception.getMessage());
+                }
+            }
+        }
     }
 
     @Override
