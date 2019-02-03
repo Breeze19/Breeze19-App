@@ -1,5 +1,6 @@
 package snu.breeze.breeze19;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.Image;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -40,6 +42,7 @@ public class MainPage extends Fragment {
 
     private RecyclerView liveRecyclerView;
     private LiveScoresAdapter adapter;
+    private Button button;
 
     private Integer flag;
     private TextView text1;
@@ -116,6 +119,14 @@ public class MainPage extends Fragment {
         LinearLayout layout = view.findViewById(R.id.layout3);
         LinearLayout layout2 = view.findViewById(R.id.layout2);
         text1 = view.findViewById(R.id.live);
+        button = view.findViewById(R.id.admin_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent adminIntent = new Intent(getContext(),AdminActivity.class);
+                startActivity(adminIntent);
+            }
+        });
        // GifImageView gif = new GifImageView(getContext());
         GifImageView gif2 = new GifImageView(getContext());
         flag = 0;

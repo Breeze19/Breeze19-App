@@ -24,6 +24,7 @@
             android:layout_marginLeft="15sp"
             android:drawablePadding="5dp"
             />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,15 +39,32 @@
             android:drawablePadding="5dp"
             />
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:visibility="gone"
-            android:textSize="22sp"
-            android:id="@+id/event"
-            android:text="This event is about to begin"
-            android:layout_marginTop="30dp"
-            />
+            android:id="@+id/live_data_parent_layout">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:textSize="20sp"
+                android:id="@+id/heading"
+                android:layout_marginTop="30dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:textSize="22sp"
+                android:id="@+id/content"
+                android:layout_marginTop="15dp"
+                />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -56,6 +74,7 @@
             android:gravity="center"
             android:paddingTop="5dp"
             android:weightSum="4"
+            android:id="@+id/parent_layout"
             android:orientation="horizontal">
 
             <TextView

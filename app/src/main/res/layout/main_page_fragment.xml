@@ -60,6 +60,12 @@
         android:scrollbarFadeDuration="10"
         android:layout_height="wrap_content"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/admin_button"
+        android:text="Admin access"
+        />
 
 
 </LinearLayout>
