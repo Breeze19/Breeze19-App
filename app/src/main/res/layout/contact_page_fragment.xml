@@ -8,12 +8,16 @@
     android:scrollbarStyle="outsideInset"
     android:scrollbarAlwaysDrawHorizontalTrack="true"
     android:layout_height="match_parent">
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/gif2"
+        android:src="@drawable/breez"
+        />
 
-
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="wrap_content"
-        android:divider="#0b0b0b"
         android:layout_height="wrap_content"
         />
 

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#0b0b0b</color>
+    <color name="colorPrimaryDark">#0b0b0b</color>
     <color name="colorAccent">#D81B60</color>
     <color name="white">#FFFFFF</color>
     <color name="yellow">#FFFF66</color>
     <color name="blue">#50BFE6</color>
-    <color name="neon_color3">#EE34D2</color>
+    <color name="neon_color3">#D638BA</color>
     <color name="red">#FF355E</color>
     <color name="menu_background">#0c0b0b</color>
     <color name="neon_color1">#ff4775</color>

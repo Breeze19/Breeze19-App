@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="8dp"
+        app:cardBackgroundColor="@color/yellow"
         card_view:cardCornerRadius="8dp"
         card_view:cardElevation="4dp"
         card_view:cardMaxElevation="6dp">
@@ -23,12 +24,37 @@
             android:layout_marginLeft="15sp"
             android:drawablePadding="5dp"
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/live"
+            android:paddingTop="10sp"
+            android:textSize="13sp"
+            android:gravity="end"
+            android:text="Live"
+            android:layout_gravity="end"
+            android:paddingRight="10dp"
+            android:layout_marginLeft="15sp"
+            android:drawablePadding="5dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:textSize="22sp"
+            android:id="@+id/event"
+            android:text="This event is about to begin"
+            android:layout_marginTop="30dp"
+            />
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_gravity="center"
+            android:visibility="visible"
             android:gravity="center"
+            android:paddingTop="5dp"
             android:weightSum="4"
             android:orientation="horizontal">
 
@@ -50,7 +76,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
-                style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:text="score1"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -65,7 +90,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
-                style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:text="score2"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -73,6 +97,7 @@
                 android:layout_weight="1"
                 android:textSize="13sp"
                 android:layout_centerInParent="true"
+
                 custom:num_digits="3"
                 custom:digit_size="40"
                 android:id="@+id/score2"/>

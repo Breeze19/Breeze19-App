@@ -1,6 +1,7 @@
 package snu.breeze.breeze19;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -81,6 +82,7 @@ public class LiveScoresAdapter extends RecyclerView.Adapter<LiveScoresAdapter.Vi
         private TextView sportName;
         private TextView teamname1;
         private TextView teamname2;
+        private TextView live;
         private Odometer score1;
         private Odometer score2;
 
@@ -91,6 +93,7 @@ public class LiveScoresAdapter extends RecyclerView.Adapter<LiveScoresAdapter.Vi
             teamname2 = (TextView) view.findViewById(R.id.team2);
             score1 = (Odometer) view.findViewById(R.id.score1);
             score2 = (Odometer) view.findViewById(R.id.score2);
+            live = view.findViewById(R.id.live);
             adapter1 = new ScoreAdapter();
             adapter2 = new ScoreAdapter();
         }
@@ -119,6 +122,19 @@ public class LiveScoresAdapter extends RecyclerView.Adapter<LiveScoresAdapter.Vi
                     sportName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_badminton,0,0,0);
                     break;
             }
+            if(data.getisLive()==1){
+                live.setText("Live");
+                live.setCompoundDrawablesWithIntrinsicBounds(R.drawable.circle,0,0,0);
+            }
+            else
+                live.setText("Finished");
+
+            Typeface custom_font = Typeface.createFromAsset(context.getAssets(), "fonts/Atami-Light.otf");
+            Typeface custom_font2 = Typeface.createFromAsset(context.getAssets(), "fonts/Biko_Regular.otf");
+            teamname1.setTypeface(custom_font2);
+            teamname2.setTypeface(custom_font2);
+            sportName.setTypeface(custom_font);
+            live.setTypeface(custom_font2);
             sportName.setText(data.getSportName().substring(0,1).toUpperCase() + data.getSportName().substring(1));
             teamname1.setWidth(width/5);
             teamname2.setWidth(width/5);

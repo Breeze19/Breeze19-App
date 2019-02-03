@@ -78,10 +78,10 @@
                 android:gravity="center"
                 fancy:fb_textSize ="25sp"
                 android:visibility="gone"
-                fancy:fb_defaultColor="@color/dark_blue"
+                fancy:fb_defaultColor="@color/yellow"
                 fancy:fb_focusColor="#000"
                 fancy:fb_text="Get Live Scores!"
-                fancy:fb_textColor="#FFFFF3" />
+                fancy:fb_textColor="@color/light_black" />
 
             <TextView
                 android:layout_height="wrap_content"

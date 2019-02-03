@@ -24,20 +24,26 @@ public class flagshipFragment extends Fragment {
 
    private TextView text1;
    private TextView text2;
+   private TextView text3;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_flagship,container,false);
         text1 = view.findViewById(R.id.newsletter_text);
+        text3 = view.findViewById(R.id.newsletter_text2);
         text2 = view.findViewById(R.id.newsletter_text1);
         Typeface custom_font = Typeface.createFromAsset(getContext().getAssets(), "fonts/Atami-Display.otf");
 
         String text = "<font color=#FFFFFF>February</font><font color=#0b0b0b>8th</font>";
         String textt = "<font color=#0b0b0b>February</font><font color=#FFFFFF>8th</font>";
+        String texttt = "<font color=#0b0b0b>February</font><font color=#FFFFFF>tth</font>";
         text1.setText(Html.fromHtml(text));
         text2.setText(Html.fromHtml(textt));
+        text3.setText(Html.fromHtml(texttt));
         text1.setTypeface(custom_font);
         text2.setTypeface(custom_font);
+        text3.setTypeface(custom_font);
+
         Log.d(TAG,"flagship page made");
         return view;
     }

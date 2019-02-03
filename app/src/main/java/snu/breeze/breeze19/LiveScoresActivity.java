@@ -35,7 +35,6 @@ public class LiveScoresActivity extends AppCompatActivity {
         }
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("/data/livescores/" + sportName + "/");
-        Log.e("AGAGAG",sportName);
         liveScoresView = (RecyclerView) findViewById(R.id.live_scores_recycler_view);
         LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
         liveScoresView.setLayoutManager(manager);
@@ -68,7 +67,7 @@ public class LiveScoresActivity extends AppCompatActivity {
                         liveScoresView.setAdapter(adapter);
                     }
                     LiveScoreData data = dataSnapshot.getValue(LiveScoreData.class);
-                    data.setKey(reference.getKey());
+                    data.setKey(dataSnapshot.getKey());
                     adapter.add(data);
                 }
             }
@@ -77,7 +76,7 @@ public class LiveScoresActivity extends AppCompatActivity {
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 if(dataSnapshot.exists()){
                     LiveScoreData data = dataSnapshot.getValue(LiveScoreData.class);
-                    data.setKey(reference.getKey());
+                    data.setKey(dataSnapshot.getKey());
                     adapter.modify(data);
                 }
             }
@@ -86,7 +85,7 @@ public class LiveScoresActivity extends AppCompatActivity {
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
                     LiveScoreData data = dataSnapshot.getValue(LiveScoreData.class);
-                    data.setKey(reference.getKey());
+                    data.setKey(dataSnapshot.getKey());
                     adapter.delete(data);
                 }
             }

@@ -146,25 +146,16 @@ public class MainPage extends Fragment {
             }
         });
         List<Integer> colors = new ArrayList<>();
-        List<Integer> colors2 = new ArrayList<>();
         colors.add(getResources().getColor(R.color.neon_color1));
         colors.add(getResources().getColor(R.color.blue));
         colors.add(getResources().getColor(R.color.yellow));
         colors.add(getResources().getColor(R.color.neon_color3));
-        colors2.add(getResources().getColor(R.color.yellow));
-        colors2.add(getResources().getColor(R.color.light_black));
         GlitchTextEffect effect = new GlitchTextEffect(getContext(),colors,"Breeze '19");
         effect.setTextSize(59);
         effect.setFontFile("fonts/Atami-Display.otf");
         effect.setNoise(7);
         effect.start();
-        GlitchTextEffect effect2 = new GlitchTextEffect(getContext(),colors2,"Break the internet!");
-        effect2.setTextSize(17);
-        effect2.setFontFile("fonts/Atami-Display.otf");
-        effect2.setNoise(4);
-        effect2.start();
         layout.addView(effect,0);
-       // layout2.addView(effect2,0);
         text1.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "fonts/Atami-Display.otf"));
         adapter = new LiveScoresAdapter(getContext());
         liveRecyclerView.setAdapter(adapter);

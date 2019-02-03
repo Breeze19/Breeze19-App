@@ -309,8 +309,27 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
             else{
                 Toast.makeText(getContext(), "Current location not available!", Toast.LENGTH_SHORT).show();
             }
-
-            googleMap.animateCamera(cu);
+             CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(main_stage)      // Sets the center of the map to Mountain View
+                .zoom(17)                   // Sets the zoom
+                .bearing(90)                // Sets the orientation of the camera to east
+                .tilt(45)                   // Sets the tilt of the camera to 30 degrees
+                .build();                   // Creates a CameraPosition from the builder
+            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+            marker462.showInfoWindow();
+           // googleMap.animateCamera(cu);
+            button2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CameraPosition cameraPosition = new CameraPosition.Builder()
+                            .target(main_stage)      // Sets the center of the map to Mountain View
+                            .zoom(17)                   // Sets the zoom
+                            .bearing(90)                // Sets the orientation of the camera to east
+                            .tilt(60)                   // Sets the tilt of the camera to 30 degrees
+                            .build();                   // Creates a CameraPosition from the builder
+                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                }
+            });
             button1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -324,6 +343,7 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
                     googleMap.animateCamera(cu);
                 }
             });
+
             // Position the map's camera near Sydney, Australia.
             //googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(28.5267345,77.5731743)));
             //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(markerLatLng, DEFAULT_ZOOM));

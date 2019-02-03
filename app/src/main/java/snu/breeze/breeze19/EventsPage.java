@@ -26,24 +26,18 @@ public class EventsPage extends Fragment {
         setRetainInstance(true);
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
             View view = inflater.inflate(R.layout.events_page,container,false);
             Log.d(TAG,"Events page made");
-            eventsTabLayout = (TabLayout) view.findViewById(R.id.events_tab_layout);
-            eventsViewPager = (ViewPager) view.findViewById(R.id.events_view_pager);
-            eventsViewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(),false);
-           // eventsViewPager.setAdapter(eventsViewPagerAdapter);
-          //  eventsViewPager.setOffscreenPageLimit(10);
+             eventsTabLayout = (TabLayout) view.findViewById(R.id.events_tab_layout);
+             eventsViewPager = (ViewPager) view.findViewById(R.id.events_view_pager);
+             eventsTabLayout.setupWithViewPager(eventsViewPager);
+        eventsViewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(),false);
 
-            /* the ViewPager requires a minimum of 1 as OffscreenPageLimit */
-             int limit = (eventsViewPagerAdapter.getCount() > 1 ? eventsViewPagerAdapter.getCount() - 1 : 1);
-             eventsViewPager.setAdapter(eventsViewPagerAdapter);
-              Log.d("LIMIT", String.valueOf(limit));
-            eventsViewPager.setOffscreenPageLimit(limit);
-            Log.d(TAG,"Events viewpager");
-            eventsTabLayout.setupWithViewPager(eventsViewPager);
+        int limit = (eventsViewPagerAdapter.getCount() > 1 ? eventsViewPagerAdapter.getCount() - 1 : 1);
+        eventsViewPager.setAdapter(eventsViewPagerAdapter);
+        eventsViewPager.setOffscreenPageLimit(limit);
             return view;
     }
 

@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:id="@+id/constraint"
     android:orientation="vertical"
-    android:background="#FC200944"
+    android:background="@drawable/background"
     android:layout_gravity="center"
     android:layout_height="match_parent">
     <LinearLayout
-        android:paddingTop="12dp"
+        android:paddingTop="1dp"
         android:layout_width="match_parent"
-        android:paddingBottom="12dp"
+        android:paddingBottom="1dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_height="wrap_content"
