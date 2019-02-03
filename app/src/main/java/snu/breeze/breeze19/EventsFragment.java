@@ -92,7 +92,6 @@ public class EventsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-
         View view = inflater.inflate(R.layout.events_fragment1,container,false);
         Log.d(TAG,"Creating events fragment");
         category = this.getArguments().getString("category");
@@ -104,8 +103,17 @@ public class EventsFragment extends Fragment {
         DividerItemDecoration itemDecorator = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         itemDecorator.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.recyclyer_separator));
         eventsView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        reference.addChildEventListener(getChildEventListener());
         return view;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isFragmentVisible){
+        super.setUserVisibleHint(true);
+        if(this.isVisible()){
+            if(isFragmentVisible){
+                reference.addChildEventListener(getChildEventListener());
+            }
+        }
     }
 
     @Override
