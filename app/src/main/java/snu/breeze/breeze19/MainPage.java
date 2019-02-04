@@ -39,9 +39,12 @@ public class MainPage extends Fragment {
 
     private FirebaseDatabase database;
     private DatabaseReference reference;
+    private DatabaseReference eventsReference;
 
     private RecyclerView liveRecyclerView;
+    private RecyclerView eventsRecyclerView;
     private LiveScoresAdapter adapter;
+    private LiveEventsAdapter eventsAdapter;
     private Button button;
 
     private Integer flag;
@@ -56,6 +59,52 @@ public class MainPage extends Fragment {
         super.onCreate(savedInstanceState);
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("/data/livescores/");
+        eventsReference = database.getReference("/data/liveevents/");
+    }
+
+    private LiveEventsData getEventsDataFromSnapshot(DataSnapshot snapshot) {
+        LiveEventsData data = snapshot.getValue(LiveEventsData.class);
+        data.setKey(snapshot.getKey());
+        return data;
+    }
+
+    private ChildEventListener getEventsChildEventListener(){
+        return new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                if(dataSnapshot.exists()){
+                    if(eventsAdapter == null){
+                        eventsAdapter = new LiveEventsAdapter(getContext());
+                        eventsRecyclerView.setAdapter(eventsAdapter);
+                    }
+                    eventsAdapter.addData(getEventsDataFromSnapshot(dataSnapshot));
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                if(dataSnapshot.exists()){
+                    eventsAdapter.update(getEventsDataFromSnapshot(dataSnapshot));
+                }
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    eventsAdapter.delete(getEventsDataFromSnapshot(dataSnapshot));
+                }
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d(TAG, "Error:- Code: " + databaseError.getCode() + " Message: " + databaseError.getMessage());
+            }
+        };
     }
 
     private ChildEventListener getChildEventListener(){
@@ -88,6 +137,9 @@ public class MainPage extends Fragment {
                             if(data.getisLive() == 1){
                                 adapter.modify(data);
                             }
+                            else{
+                                adapter.delete(data);
+                            }
                         }
                     }
                 }
@@ -116,6 +168,9 @@ public class MainPage extends Fragment {
         liveRecyclerView = view.findViewById(R.id.recycleView);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         liveRecyclerView.setLayoutManager(manager);
+        eventsRecyclerView = view.findViewById(R.id.events_recycler);
+        LinearLayoutManager eventsManager = new LinearLayoutManager(getContext());
+        eventsRecyclerView.setLayoutManager(eventsManager);
         LinearLayout layout = view.findViewById(R.id.layout3);
         LinearLayout layout2 = view.findViewById(R.id.layout2);
         text1 = view.findViewById(R.id.live);
@@ -171,6 +226,7 @@ public class MainPage extends Fragment {
         adapter = new LiveScoresAdapter(getContext());
         liveRecyclerView.setAdapter(adapter);
         reference.addChildEventListener(getChildEventListener());
+        eventsReference.addChildEventListener(getEventsChildEventListener());
         return view;
 
     }
