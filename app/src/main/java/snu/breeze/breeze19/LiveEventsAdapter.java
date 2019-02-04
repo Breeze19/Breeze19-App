@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,11 +15,17 @@ import java.util.ArrayList;
 public class LiveEventsAdapter extends RecyclerView.Adapter<LiveEventsAdapter.ViewHolder> {
     private final String TAG = LiveEventsAdapter.class.getSimpleName();
 
+    public interface ClickListener{
+        void onClick(LiveEventsData data);
+    }
+
     private Context context;
     private ArrayList<LiveEventsData> liveEventsData;
+    private ClickListener listener;
 
-    public LiveEventsAdapter(Context context){
+    public LiveEventsAdapter(Context context,ClickListener listener){
         this.context = context;
+        this.listener = listener;
         liveEventsData = new ArrayList<LiveEventsData>();
     }
 
@@ -78,6 +85,7 @@ public class LiveEventsAdapter extends RecyclerView.Adapter<LiveEventsAdapter.Vi
         private TextView sportView;
         private TextView headingView;
         private TextView contentView;
+        private ImageButton button;
 
         public ViewHolder(View view){
             super(view);
@@ -89,13 +97,21 @@ public class LiveEventsAdapter extends RecyclerView.Adapter<LiveEventsAdapter.Vi
             contentView = (TextView) view.findViewById(R.id.content);
         }
 
-        public void bind(LiveEventsData data){
+        public void bind(final LiveEventsData data){
             parentLayout.setVisibility(View.GONE);
             liveDataParentLayout.setVisibility(View.VISIBLE);
             liveView.setVisibility(View.GONE);
             sportView.setVisibility(View.GONE);
             headingView.setText(data.getHeading());
             contentView.setText(data.getContent());
+            if(listener != null) {
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        listener.onClick(data);
+                    }
+                });
+            }
         }
     }
 

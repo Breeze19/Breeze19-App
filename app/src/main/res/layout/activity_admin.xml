@@ -15,7 +15,8 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/send_notification"
-        android:text="send_notification"/>
+        android:id="@+id/add_event"
+        android:text="Add event"/>
+
 
 </LinearLayout>

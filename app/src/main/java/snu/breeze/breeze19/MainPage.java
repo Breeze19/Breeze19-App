@@ -74,7 +74,7 @@ public class MainPage extends Fragment {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 if(dataSnapshot.exists()){
                     if(eventsAdapter == null){
-                        eventsAdapter = new LiveEventsAdapter(getContext());
+                        eventsAdapter = new LiveEventsAdapter(getContext(),null);
                         eventsRecyclerView.setAdapter(eventsAdapter);
                     }
                     eventsAdapter.addData(getEventsDataFromSnapshot(dataSnapshot));
