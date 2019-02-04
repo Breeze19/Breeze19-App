@@ -48,6 +48,8 @@ public class AdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference("/data/liveevents/");
         sendNotificationButton = (Button) findViewById(R.id.send_notification);
         eventsList = (RecyclerView) findViewById(R.id.events_list);
         LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());

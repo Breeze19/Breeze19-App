@@ -41,6 +41,9 @@ public class LiveScoresAdapter extends RecyclerView.Adapter<LiveScoresAdapter.Vi
             liveScoreData.add(index, data);
             notifyDataSetChanged();
         }
+        else{
+            add(data);
+        }
     }
 
     public void delete(LiveScoreData data){
