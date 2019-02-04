@@ -16,7 +16,9 @@ public class LiveEventsAdapter extends RecyclerView.Adapter<LiveEventsAdapter.Vi
     private final String TAG = LiveEventsAdapter.class.getSimpleName();
 
     public interface ClickListener{
-        void onClick(LiveEventsData data);
+        void sendNotification(LiveEventsData data);
+        void edit(LiveEventsData data);
+        void delete(LiveEventsData data);
     }
 
     private Context context;
@@ -85,7 +87,9 @@ public class LiveEventsAdapter extends RecyclerView.Adapter<LiveEventsAdapter.Vi
         private TextView sportView;
         private TextView headingView;
         private TextView contentView;
-        private ImageButton button;
+        private ImageButton sendNotification;
+        private ImageButton edit;
+        private ImageButton delete;
 
         public ViewHolder(View view){
             super(view);
@@ -105,10 +109,25 @@ public class LiveEventsAdapter extends RecyclerView.Adapter<LiveEventsAdapter.Vi
             headingView.setText(data.getHeading());
             contentView.setText(data.getContent());
             if(listener != null) {
-                button.setOnClickListener(new View.OnClickListener() {
+                sendNotification.setVisibility(View.VISIBLE);
+                edit.setVisibility(View.VISIBLE);
+                delete.setVisibility(View.VISIBLE);
+                sendNotification.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        listener.onClick(data);
+                        listener.sendNotification(data);
+                    }
+                });
+                edit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        listener.edit(data);
+                    }
+                });
+                delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        listener.delete(data);
                     }
                 });
             }

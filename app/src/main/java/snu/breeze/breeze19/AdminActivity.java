@@ -68,6 +68,7 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
                 layout.addView(headingView);
                 layout.addView(contentView);
                 builder.setView(layout);
+                builder.setTitle("Add event");
                 builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(final DialogInterface dialog, int which) {
@@ -81,11 +82,9 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
                             }
                         });
                     }
-
                 });
                 builder.show();
             }
-
         });
     }
 
@@ -152,7 +151,7 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
     }
 
     @Override
-    public void onClick(final LiveEventsData data) {
+    public void sendNotification(final LiveEventsData data) {
         AlertDialog.Builder builder = new AlertDialog.Builder(AdminActivity.this);
         builder.setTitle("Send notification?");
         builder.setPositiveButton("Send", new DialogInterface.OnClickListener() {
@@ -203,5 +202,72 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
             }
         });
         builder.show();
+    }
+
+    @Override
+    public void edit(final LiveEventsData data) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(AdminActivity.this);
+        LinearLayout layout = new LinearLayout(AdminActivity.this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        final EditText headingView = new EditText(AdminActivity.this);
+        final EditText contentView = new EditText(AdminActivity.this);
+        layout.addView(headingView);
+        layout.addView(contentView);
+        builder.setView(layout);
+        builder.setTitle("Edit event");
+        builder.setPositiveButton("Edit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(final DialogInterface dialog, int which) {
+                headingView.setText(data.getHeading());
+                contentView.setText(data.getContent());
+                if(!headingView.getText().toString().equals(data.getHeading()) ||
+                        !contentView.getText().toString().equals(data.getContent())) {
+                    reference.child(data.getKey()).setValue(new LiveEventsData(headingView.getText().toString(), contentView.getText().toString())).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(AdminActivity.this, "Event edited", Toast.LENGTH_SHORT).show();
+                                dialog.cancel();
+                            }
+                        }
+                    });
+                }
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+    }
+
+    @Override
+    public void delete(final LiveEventsData data) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(AdminActivity.this);
+        builder.setTitle("Confirm deletion");
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            public void onClick(final DialogInterface dialog, int which) {
+                reference.child(data.getKey()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(AdminActivity.this,"Event deleted",Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        }
+                    }
+                });
+            }
+        });
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Log.d(TAG,"Deletion cancelled");
+                dialog.dismiss();
+            }
+        });
+        AlertDialog deleteDialog = builder.create();
+        deleteDialog.show();
     }
 }
