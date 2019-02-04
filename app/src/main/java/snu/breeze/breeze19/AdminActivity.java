@@ -36,7 +36,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-public class AdminActivity extends AppCompatActivity implements LiveEventsAdapter.ClickListener {
+public class AdminActivity extends AppCompatActivity implements LiveEventsAdapter.ClickListener, LiveScoresAdapter.ClickListener {
     private final String TAG = AdminActivity.class.getSimpleName();
 
     private FirebaseDatabase database;
@@ -45,47 +45,98 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
 
     private RecyclerView eventsList;
     private LiveEventsAdapter adapter;
+    private LiveScoresAdapter adapter1;
     private Button addEvent;
+
+    private String sportName;
+    private boolean isSport;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
         database = FirebaseDatabase.getInstance();
-        reference = database.getReference("/data/liveevents/");
         addEvent = (Button) findViewById(R.id.add_event);
         eventsList = (RecyclerView) findViewById(R.id.events_list);
         LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
         eventsList.setLayoutManager(manager);
-        addEvent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(AdminActivity.this);
-                LinearLayout layout = new LinearLayout(AdminActivity.this);
-                layout.setOrientation(LinearLayout.VERTICAL);
-                final EditText headingView = new EditText(AdminActivity.this);
-                final EditText contentView = new EditText(AdminActivity.this);
-                layout.addView(headingView);
-                layout.addView(contentView);
-                builder.setView(layout);
-                builder.setTitle("Add event");
-                builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(final DialogInterface dialog, int which) {
-                        reference.push().setValue(new LiveEventsData(headingView.getText().toString(),contentView.getText().toString())).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()){
-                                    Toast.makeText(AdminActivity.this,"Event added",Toast.LENGTH_SHORT).show();
-                                    dialog.cancel();
+        if (getIntent().getExtras() == null) {
+            reference = database.getReference("/data/liveevents/");
+            isSport = false;
+            addEvent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(AdminActivity.this);
+                    LinearLayout layout = new LinearLayout(AdminActivity.this);
+                    layout.setOrientation(LinearLayout.VERTICAL);
+                    final EditText headingView = new EditText(AdminActivity.this);
+                    final EditText contentView = new EditText(AdminActivity.this);
+                    headingView.setHint("Heading here");
+                    contentView.setHint("Content here");
+                    layout.addView(headingView);
+                    layout.addView(contentView);
+                    builder.setView(layout);
+                    builder.setTitle("Add event");
+                    builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(final DialogInterface dialog, int which) {
+                            reference.push().setValue(new LiveEventsData(headingView.getText().toString(), contentView.getText().toString())).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(AdminActivity.this, "Event added", Toast.LENGTH_SHORT).show();
+                                        dialog.cancel();
+                                    }
                                 }
-                            }
-                        });
-                    }
-                });
-                builder.show();
-            }
-        });
+                            });
+                        }
+                    });
+                    builder.show();
+                }
+            });
+        } else {
+            sportName = getIntent().getExtras().getString(Constants.INTENT_KEY_SPORT_NAME);
+            isSport = true;
+            reference = database.getReference("/data/livescores/" + sportName);
+            addEvent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(AdminActivity.this);
+                    LinearLayout layout = new LinearLayout(AdminActivity.this);
+                    layout.setOrientation(LinearLayout.VERTICAL);
+                    final EditText team1View = new EditText(AdminActivity.this);
+                    final EditText team2View = new EditText(AdminActivity.this);
+                    final EditText score1View = new EditText(AdminActivity.this);
+                    final EditText score2View = new EditText(AdminActivity.this);
+                    team1View.setHint("Team 1 here");
+                    team2View.setHint("Team 2 here");
+                    score1View.setHint("Score for team 1 here");
+                    score2View.setHint("Score for team 2 here");
+                    layout.addView(team1View);
+                    layout.addView(score1View);
+                    layout.addView(team2View);
+                    layout.addView(score2View);
+                    builder.setView(layout);
+                    builder.setTitle("Add score");
+                    builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(final DialogInterface dialog, int which) {
+                            reference.push().setValue(new LiveScoreData(team1View.getText().toString(), team2View.getText().toString()
+                                    , score1View.getText().toString(), score2View.getText().toString(),sportName)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(AdminActivity.this, "Score added", Toast.LENGTH_SHORT).show();
+                                        dialog.cancel();
+                                    }
+                                }
+                            });
+                        }
+                    });
+                    builder.show();
+                }
+            });
+        }
     }
 
     @Override
@@ -111,30 +162,52 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
         return data;
     }
 
+    private LiveScoreData getScoresDataFromSnapshot(DataSnapshot snapshot) {
+        LiveScoreData data = snapshot.getValue(LiveScoreData.class);
+        data.setKey(snapshot.getKey());
+        return data;
+    }
+
     private ChildEventListener getChildEventListener() {
         return new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 if (dataSnapshot.exists()) {
-                    if (adapter == null) {
-                        adapter = new LiveEventsAdapter(getApplicationContext(),AdminActivity.this);
+                    if (isSport && adapter1 == null) {
+                        adapter1 = new LiveScoresAdapter(getApplicationContext(), AdminActivity.this);
+                        eventsList.setAdapter(adapter1);
+                    } else if (!isSport && adapter == null) {
+                        adapter = new LiveEventsAdapter(getApplicationContext(), AdminActivity.this);
                         eventsList.setAdapter(adapter);
                     }
-                    adapter.addData(getEventsDataFromSnapshot(dataSnapshot));
+
+                    if (isSport) {
+                        adapter1.add(getScoresDataFromSnapshot(dataSnapshot));
+                    } else {
+                        adapter.addData(getEventsDataFromSnapshot(dataSnapshot));
+                    }
                 }
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 if (dataSnapshot.exists()) {
-                    adapter.update(getEventsDataFromSnapshot(dataSnapshot));
+                    if (isSport) {
+                        adapter1.modify(getScoresDataFromSnapshot(dataSnapshot));
+                    } else {
+                        adapter.update(getEventsDataFromSnapshot(dataSnapshot));
+                    }
                 }
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    adapter.delete(getEventsDataFromSnapshot(dataSnapshot));
+                    if (isSport) {
+                        adapter1.delete(getScoresDataFromSnapshot(dataSnapshot));
+                    } else {
+                        adapter.delete(getEventsDataFromSnapshot(dataSnapshot));
+                    }
                 }
             }
 
@@ -211,6 +284,8 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
         layout.setOrientation(LinearLayout.VERTICAL);
         final EditText headingView = new EditText(AdminActivity.this);
         final EditText contentView = new EditText(AdminActivity.this);
+        headingView.setText(data.getHeading());
+        contentView.setText(data.getContent());
         layout.addView(headingView);
         layout.addView(contentView);
         builder.setView(layout);
@@ -218,9 +293,7 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
         builder.setPositiveButton("Edit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(final DialogInterface dialog, int which) {
-                headingView.setText(data.getHeading());
-                contentView.setText(data.getContent());
-                if(!headingView.getText().toString().equals(data.getHeading()) ||
+                if (!headingView.getText().toString().equals(data.getHeading()) ||
                         !contentView.getText().toString().equals(data.getContent())) {
                     reference.child(data.getKey()).setValue(new LiveEventsData(headingView.getText().toString(), contentView.getText().toString())).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
@@ -252,8 +325,8 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
                 reference.child(data.getKey()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(AdminActivity.this,"Event deleted",Toast.LENGTH_SHORT).show();
+                        if (task.isSuccessful()) {
+                            Toast.makeText(AdminActivity.this, "Event deleted", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }
                     }
@@ -263,11 +336,60 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
         builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Log.d(TAG,"Deletion cancelled");
+                Log.d(TAG, "Deletion cancelled");
                 dialog.dismiss();
             }
         });
         AlertDialog deleteDialog = builder.create();
         deleteDialog.show();
     }
+
+    @Override
+    public void edit(final LiveScoreData data) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(AdminActivity.this);
+        LinearLayout layout = new LinearLayout(AdminActivity.this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        final EditText team1View = new EditText(AdminActivity.this);
+        final EditText team2View = new EditText(AdminActivity.this);
+        final EditText score1View = new EditText(AdminActivity.this);
+        final EditText score2View = new EditText(AdminActivity.this);
+        team1View.setText(data.getTeam1());
+        team2View.setText(data.getTeam2());
+        score1View.setText(data.getScore1());
+        score2View.setText(data.getScore2());
+        layout.addView(team1View);
+        layout.addView(score1View);
+        layout.addView(team2View);
+        layout.addView(score2View);
+        builder.setView(layout);
+        builder.setTitle("Edit score");
+        builder.setPositiveButton("Edit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(final DialogInterface dialog, int which) {
+                if (!team1View.getText().toString().equals(data.getTeam1()) ||
+                        !team2View.getText().toString().equals(data.getTeam1()) ||
+                        !score1View.getText().toString().equals(data.getScore1()) ||
+                        !score2View.getText().toString().equals(data.getScore2())) {
+                    reference.child(data.getKey()).setValue(new LiveScoreData(team1View.getText().toString(), team2View.getText().toString(),
+                            score1View.getText().toString(), score2View.getText().toString(),sportName)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(AdminActivity.this, "Score edited", Toast.LENGTH_SHORT).show();
+                                dialog.cancel();
+                            }
+                        }
+                    });
+                }
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+    }
+
 }

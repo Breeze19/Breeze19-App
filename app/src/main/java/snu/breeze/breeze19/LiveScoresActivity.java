@@ -1,5 +1,6 @@
 package snu.breeze.breeze19;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +26,7 @@ public class LiveScoresActivity extends AppCompatActivity {
 
     private RecyclerView liveScoresView;
     private LiveScoresAdapter adapter;
+    private Button adminPanelButton;
 
     private String sportName;
 
@@ -36,6 +40,15 @@ public class LiveScoresActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("/data/livescores/" + sportName + "/");
         liveScoresView = (RecyclerView) findViewById(R.id.live_scores_recycler_view);
+        adminPanelButton = (Button) findViewById(R.id.admin_live_scores);
+        adminPanelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent adminPanelIntent = new Intent(getApplicationContext(),AdminActivity.class);
+                adminPanelIntent.putExtra(Constants.INTENT_KEY_SPORT_NAME,sportName);
+                startActivity(adminPanelIntent);
+            }
+        });
         LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
         liveScoresView.setLayoutManager(manager);
     }
@@ -63,7 +76,7 @@ public class LiveScoresActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 if(dataSnapshot.exists()) {
                     if (adapter == null) {
-                        adapter = new LiveScoresAdapter(getApplicationContext());
+                        adapter = new LiveScoresAdapter(getApplicationContext(),null);
                         liveScoresView.setAdapter(adapter);
                     }
                     LiveScoreData data = dataSnapshot.getValue(LiveScoreData.class);
