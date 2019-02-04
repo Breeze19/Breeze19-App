@@ -36,7 +36,7 @@ public class flagshipFragment extends Fragment {
 
         String text = "<font color=#FFFFFF>February</font><font color=#0b0b0b>8th</font>";
         String textt = "<font color=#0b0b0b>February</font><font color=#FFFFFF>8th</font>";
-        String texttt = "<font color=#0b0b0b>February</font><font color=#FFFFFF>tth</font>";
+        String texttt = "<font color=#000000>February7</font><font color=#FFFFFF>th</font>";
         text1.setText(Html.fromHtml(text));
         text2.setText(Html.fromHtml(textt));
         text3.setText(Html.fromHtml(texttt));

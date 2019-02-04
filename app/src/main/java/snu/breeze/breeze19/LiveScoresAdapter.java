@@ -121,6 +121,8 @@ public class LiveScoresAdapter extends RecyclerView.Adapter<LiveScoresAdapter.Vi
                 case "badminton" :
                     sportName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_badminton,0,0,0);
                     break;
+                default:
+                    break;
             }
             if(data.getisLive()==1){
                 live.setText("Live");
@@ -130,7 +132,7 @@ public class LiveScoresAdapter extends RecyclerView.Adapter<LiveScoresAdapter.Vi
                 live.setText("Finished");
 
             Typeface custom_font = Typeface.createFromAsset(context.getAssets(), "fonts/Atami-Light.otf");
-            Typeface custom_font2 = Typeface.createFromAsset(context.getAssets(), "fonts/Biko_Regular.otf");
+            Typeface custom_font2 = Typeface.createFromAsset(context.getAssets(), "fonts/Instruction.ttf");
             teamname1.setTypeface(custom_font2);
             teamname2.setTypeface(custom_font2);
             sportName.setTypeface(custom_font);

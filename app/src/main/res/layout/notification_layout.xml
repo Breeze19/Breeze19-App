@@ -2,73 +2,87 @@
     android:id="@+id/layout"
     android:layout_width="fill_parent"
     android:background="@color/light_black"
-    android:layout_height="80dp"
+    android:layout_height="90dp"
     android:padding="10dp" >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="10dp"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:paddingLeft="15dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="15dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
+                android:text="Breeze'19"
                 android:textColor="#FFF"
-                android:text="Breeze'19"/>
+                android:textSize="15sp" />
 
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_dance1"
-            />
-
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:foregroundGravity="center"
+                android:src="@drawable/ic_dance1" />
         </LinearLayout>
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:background="@color/yellow"
+            android:layout_marginLeft="8dp"/>
+
+        <ImageView
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:background="@color/blue" />
+
+        <ImageView
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:background="@color/neon_color3"
+            android:layout_marginRight="5dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="fill_parent"
+            android:layout_height="match_parent"
             android:layout_marginRight="30dp"
             android:orientation="vertical"
-            android:paddingLeft="20dp"
-            android:weightSum="4"
-            android:layout_height="match_parent">
+            android:paddingLeft="2dp"
+            android:weightSum="4">
+
             <TextView
-                android:textSize="20sp"
-                android:textColor="#FFF"
-                android:text="Testing"
-                android:layout_weight="2"
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
-    <TextView
-        android:textSize="13sp"
-        android:textColor="#FFF"
-        android:text="Testing is awesome"
-        android:id="@+id/text"
-        android:layout_weight="2"
-        android:paddingTop="5sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        />
+                android:layout_weight="2"
+                android:text="Testing"
+                android:textColor="#FFF"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:layout_weight="2"
+                android:paddingTop="5sp"
+                android:text="Testing is awesome"
+                android:textColor="#FFF"
+                android:textSize="13sp" />
 
         </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Breeze"
-            android:id="@+id/title1"
-            android:layout_weight="1"
-            android:textColor="#FFF"
-            android:layout_gravity="end"
-            android:gravity="end"
-          />
-
-
     </LinearLayout>
 </RelativeLayout>

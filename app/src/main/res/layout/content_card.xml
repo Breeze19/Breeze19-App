@@ -54,7 +54,7 @@
             android:layout_gravity="center"
             android:visibility="visible"
             android:gravity="center"
-            android:paddingTop="5dp"
+            android:paddingTop="19dp"
             android:weightSum="4"
             android:orientation="horizontal">
 
@@ -70,7 +70,7 @@
                 android:gravity="center"
                 android:paddingBottom="7sp"
                 android:layout_weight="1"
-                android:textSize="13sp" />
+                android:textSize="15sp" />
 
             <xyz.pinaki.android.wheelticker.Odometer
                 android:layout_width="wrap_content"
@@ -113,7 +113,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:paddingBottom="7sp"
-                android:textSize="13sp" />
+                android:textSize="15sp" />
 
 
         </LinearLayout>
