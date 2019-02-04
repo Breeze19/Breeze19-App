@@ -52,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.home:
-                                viewPager.setCurrentItem(0);
+                                viewPager.setCurrentItem(1);
                                 break;
                             case R.id.maps:
-                                viewPager.setCurrentItem(1);
+                                viewPager.setCurrentItem(0);
                                 break;
                             case R.id.events:
                                 viewPager.setCurrentItem(2);
@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         });
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),true);
         viewPager.setAdapter(pagerAdapter);
+        viewPager.setCurrentItem(1);
     }
 
     private void saveFCMToken(){

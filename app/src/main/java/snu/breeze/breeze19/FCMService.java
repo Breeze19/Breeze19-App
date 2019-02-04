@@ -6,6 +6,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
@@ -73,9 +75,10 @@ public class FCMService extends FirebaseMessagingService {
             mChannel.enableLights(true);
             mChannel.setLightColor(R.color.red);
             mChannel.enableVibration(true);
-            mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+            mChannel.setVibrationPattern(new long[]{100,100});
             mNotificationManager.createNotificationChannel(mChannel);
         }
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notification_layout);
         contentView.setTextViewText(R.id.title,(bundle.getString("heading")));
         contentView.setTextViewText(R.id.text, bundle.getString("content").substring(0,Math.min(bundle.getString("content").length(),40)));
@@ -83,6 +86,8 @@ public class FCMService extends FirebaseMessagingService {
                 .setSmallIcon(R.drawable.ic_contact)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
+                .setVibrate(new long[]{100,100})
+                .setSound(alarmSound)
                 .setContent(contentView);
 
         mNotificationManager.notify(0,builder.build());

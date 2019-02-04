@@ -21,10 +21,10 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         if (isMain) {
             switch (position) {
                 case 0:
-                    fragment = new MainPage();
+                    fragment = new MapViewFragment();
                     break;
                 case 1:
-                    fragment = new MapViewFragment();
+                    fragment = new MainPage();
                     break;
                 case 2:
                     fragment = new EventsPage();
@@ -79,10 +79,10 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         if (isMain) {
             switch (position) {
                 case 0:
-                    title = "Home";
+                    title = "Map";
                     break;
                 case 1:
-                    title = "Map";
+                    title = "Home";
                     break;
                 case 2:
                     title = "Events";

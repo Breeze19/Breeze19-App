@@ -124,9 +124,11 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
                     public void onClick(View v) {
                         Intent liveScoresIntent = new Intent(Context,LiveScoresActivity.class);
                         liveScoresIntent.putExtra(Constants.INTENT_KEY_SPORT_NAME,data.geteventsName().substring(0,data.geteventsName().indexOf('(')).trim().toLowerCase());
+                        liveScoresIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         Context.startActivity(liveScoresIntent);
                     }
                 });
+
                 container.setPadding(0,0,0,0);
                 eventDate.setVisibility(View.GONE);
                 eventDate.setVisibility(View.GONE);

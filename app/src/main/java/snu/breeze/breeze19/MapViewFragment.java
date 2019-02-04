@@ -62,13 +62,13 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
     public static int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private boolean mPermissionDenied = false;
     private boolean isMapLoaded = false;
+    private int flag = 0;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.mapview_fragmnet, container, false);
         button1 = rootView.findViewById(R.id.button1);
-        button2 = rootView.findViewById(R.id.button2);
         mMapView = (MapView) rootView.findViewById(R.id.mapView);
         mMapView.onCreate(savedInstanceState);
         mMapView.onResume(); // needed to get the map to display immediately
@@ -296,35 +296,37 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
                 .target(main_stage)      // Sets the center of the map to Mountain View
                 .zoom(17)                   // Sets the zoom
                 .bearing(90)                // Sets the orientation of the camera to east
-                .tilt(45)                   // Sets the tilt of the camera to 30 degrees
+                .tilt(60)                   // Sets the tilt of the camera to 30 degrees
                 .build();                   // Creates a CameraPosition from the builder
             googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
             marker462.showInfoWindow();
            // googleMap.animateCamera(cu);
-            button2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    CameraPosition cameraPosition = new CameraPosition.Builder()
-                            .target(main_stage)      // Sets the center of the map to Mountain View
-                            .zoom(17)                   // Sets the zoom
-                            .bearing(90)                // Sets the orientation of the camera to east
-                            .tilt(60)                   // Sets the tilt of the camera to 30 degrees
-                            .build();                   // Creates a CameraPosition from the builder
-                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-                }
-            });
 
             button1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     bounds = builder.build();
 
-                    int width = getResources().getDisplayMetrics().widthPixels;
-                    int height = getResources().getDisplayMetrics().heightPixels;
-                    int padding = (int) (width * 0.10); // offset from edges of the map 10% of screen
 
-                    CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
-                    googleMap.animateCamera(cu);
+                    if(flag ==0){
+                        int width = getResources().getDisplayMetrics().widthPixels;
+                        int height = getResources().getDisplayMetrics().heightPixels;
+                        int padding = (int) (width * 0.10); // offset from edges of the map 10% of screen
+
+                        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
+                        googleMap.animateCamera(cu);
+                        flag = 1;
+                    }
+                    else{
+                        CameraPosition cameraPosition2 = new CameraPosition.Builder()
+                                .target(main_stage)      // Sets the center of the map to Mountain View
+                                .zoom(17)                   // Sets the zoom
+                                .bearing(90)                // Sets the orientation of the camera to east
+                                .tilt(60)                   // Sets the tilt of the camera to 30 degrees
+                                .build();                   // Creates a CameraPosition from the builder
+                        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition2));
+                        flag = 0;
+                    }
                 }
             });
 

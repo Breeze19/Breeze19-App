@@ -81,8 +81,11 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
                             }
                         });
                     }
+
                 });
+                builder.show();
             }
+
         });
     }
 
