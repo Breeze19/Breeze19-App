@@ -292,24 +292,6 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
             Marker marker462 =  googleMap.addMarker(marker16);
             isMapLoaded = true;
             googleMap.setMyLocationEnabled(true);
-            Criteria criteria = new Criteria();
-            criteria.setAccuracy(Criteria.ACCURACY_FINE);
-            criteria.setAltitudeRequired(true);
-            criteria.setBearingRequired(true);
-            criteria.setCostAllowed(true);
-            criteria.setPowerRequirement(Criteria.POWER_LOW);
-            locationManager = (LocationManager) getContext().getSystemService(LOCATION_SERVICE);
-            provider = locationManager.getBestProvider(criteria, true);
-            locationManager.requestLocationUpdates(provider, 1000, 0, this);
-            Location location = locationManager.getLastKnownLocation(provider);
-            if(location!=null) {
-                double latitude = location.getLatitude();
-                double longitude = location.getLongitude();
-                LatLng myPosition = new LatLng(latitude, longitude);
-            }
-            else{
-                Toast.makeText(getContext(), "Current location not available!", Toast.LENGTH_SHORT).show();
-            }
              CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(main_stage)      // Sets the center of the map to Mountain View
                 .zoom(17)                   // Sets the zoom
