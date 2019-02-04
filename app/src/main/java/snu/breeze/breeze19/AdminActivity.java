@@ -211,6 +211,8 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
         layout.setOrientation(LinearLayout.VERTICAL);
         final EditText headingView = new EditText(AdminActivity.this);
         final EditText contentView = new EditText(AdminActivity.this);
+        headingView.setText(data.getHeading());
+        contentView.setText(data.getContent());
         layout.addView(headingView);
         layout.addView(contentView);
         builder.setView(layout);
@@ -218,8 +220,6 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
         builder.setPositiveButton("Edit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(final DialogInterface dialog, int which) {
-                headingView.setText(data.getHeading());
-                contentView.setText(data.getContent());
                 if(!headingView.getText().toString().equals(data.getHeading()) ||
                         !contentView.getText().toString().equals(data.getContent())) {
                     reference.child(data.getKey()).setValue(new LiveEventsData(headingView.getText().toString(), contentView.getText().toString())).addOnCompleteListener(new OnCompleteListener<Void>() {
