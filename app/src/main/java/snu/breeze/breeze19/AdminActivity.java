@@ -60,7 +60,7 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
         eventsList = (RecyclerView) findViewById(R.id.events_list);
         LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
         eventsList.setLayoutManager(manager);
-        if(getIntent().getExtras() == null) {
+        if (getIntent().getExtras() == null) {
             reference = database.getReference("/data/liveevents/");
             isSport = false;
             addEvent.setOnClickListener(new View.OnClickListener() {
@@ -80,11 +80,11 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
                     builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(final DialogInterface dialog, int which) {
-                            reference.push().setValue(new LiveEventsData(headingView.getText().toString(),contentView.getText().toString())).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            reference.push().setValue(new LiveEventsData(headingView.getText().toString(), contentView.getText().toString())).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
-                                        Toast.makeText(AdminActivity.this,"Event added",Toast.LENGTH_SHORT).show();
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(AdminActivity.this, "Event added", Toast.LENGTH_SHORT).show();
                                         dialog.cancel();
                                     }
                                 }
@@ -94,8 +94,7 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
                     builder.show();
                 }
             });
-        }
-        else{
+        } else {
             sportName = getIntent().getExtras().getString(Constants.INTENT_KEY_SPORT_NAME);
             isSport = true;
             reference = database.getReference("/data/livescores/" + sportName);
@@ -122,12 +121,12 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
                     builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(final DialogInterface dialog, int which) {
-                            reference.push().setValue(new LiveScoreData(team1View.getText().toString(),team2View.getText().toString()
-                                    ,score1View.getText().toString(),score2View.getText().toString())).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            reference.push().setValue(new LiveScoreData(team1View.getText().toString(), team2View.getText().toString()
+                                    , score1View.getText().toString(), score2View.getText().toString(),sportName)).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
-                                        Toast.makeText(AdminActivity.this,"Score added",Toast.LENGTH_SHORT).show();
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(AdminActivity.this, "Score added", Toast.LENGTH_SHORT).show();
                                         dialog.cancel();
                                     }
                                 }
@@ -174,20 +173,17 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 if (dataSnapshot.exists()) {
-                    if (adapter == null) {
-                        if(isSport){
-                            adapter1 = new LiveScoresAdapter(getApplicationContext());
-                            eventsList.setAdapter(adapter1);
-                        }
-                        else {
-                            adapter = new LiveEventsAdapter(getApplicationContext(), AdminActivity.this);
-                            eventsList.setAdapter(adapter);
-                        }
+                    if (isSport && adapter1 == null) {
+                        adapter1 = new LiveScoresAdapter(getApplicationContext(), AdminActivity.this);
+                        eventsList.setAdapter(adapter1);
+                    } else if (!isSport && adapter == null) {
+                        adapter = new LiveEventsAdapter(getApplicationContext(), AdminActivity.this);
+                        eventsList.setAdapter(adapter);
                     }
-                    if(isSport){
+
+                    if (isSport) {
                         adapter1.add(getScoresDataFromSnapshot(dataSnapshot));
-                    }
-                    else {
+                    } else {
                         adapter.addData(getEventsDataFromSnapshot(dataSnapshot));
                     }
                 }
@@ -196,10 +192,9 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 if (dataSnapshot.exists()) {
-                    if(isSport){
+                    if (isSport) {
                         adapter1.modify(getScoresDataFromSnapshot(dataSnapshot));
-                    }
-                    else {
+                    } else {
                         adapter.update(getEventsDataFromSnapshot(dataSnapshot));
                     }
                 }
@@ -208,10 +203,9 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    if(isSport) {
+                    if (isSport) {
                         adapter1.delete(getScoresDataFromSnapshot(dataSnapshot));
-                    }
-                    else{
+                    } else {
                         adapter.delete(getEventsDataFromSnapshot(dataSnapshot));
                     }
                 }
@@ -299,7 +293,7 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
         builder.setPositiveButton("Edit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(final DialogInterface dialog, int which) {
-                if(!headingView.getText().toString().equals(data.getHeading()) ||
+                if (!headingView.getText().toString().equals(data.getHeading()) ||
                         !contentView.getText().toString().equals(data.getContent())) {
                     reference.child(data.getKey()).setValue(new LiveEventsData(headingView.getText().toString(), contentView.getText().toString())).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
@@ -331,8 +325,8 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
                 reference.child(data.getKey()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(AdminActivity.this,"Event deleted",Toast.LENGTH_SHORT).show();
+                        if (task.isSuccessful()) {
+                            Toast.makeText(AdminActivity.this, "Event deleted", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }
                     }
@@ -342,7 +336,7 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
         builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Log.d(TAG,"Deletion cancelled");
+                Log.d(TAG, "Deletion cancelled");
                 dialog.dismiss();
             }
         });
@@ -372,12 +366,12 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
         builder.setPositiveButton("Edit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(final DialogInterface dialog, int which) {
-                if(!team1View.getText().toString().equals(data.getTeam1()) ||
+                if (!team1View.getText().toString().equals(data.getTeam1()) ||
                         !team2View.getText().toString().equals(data.getTeam1()) ||
                         !score1View.getText().toString().equals(data.getScore1()) ||
                         !score2View.getText().toString().equals(data.getScore2())) {
                     reference.child(data.getKey()).setValue(new LiveScoreData(team1View.getText().toString(), team2View.getText().toString(),
-                            score1View.getText().toString(),score2View.getText().toString())).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            score1View.getText().toString(), score2View.getText().toString(),sportName)).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {

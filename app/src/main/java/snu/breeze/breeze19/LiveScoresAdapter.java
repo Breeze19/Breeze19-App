@@ -95,10 +95,7 @@ public class LiveScoresAdapter extends RecyclerView.Adapter<LiveScoresAdapter.Vi
         private TextView live;
         private Odometer score1;
         private Odometer score2;
-        private ImageButton sendNotification;
         private ImageButton edit;
-        private ImageButton delete;
-
         public ViewHolder(View view){
             super(view);
             sportName = (TextView) view.findViewById(R.id.sportname);
@@ -106,6 +103,7 @@ public class LiveScoresAdapter extends RecyclerView.Adapter<LiveScoresAdapter.Vi
             teamname2 = (TextView) view.findViewById(R.id.team2);
             score1 = (Odometer) view.findViewById(R.id.score1);
             score2 = (Odometer) view.findViewById(R.id.score2);
+            edit = view.findViewById(R.id.edit_image_button);
             live = view.findViewById(R.id.live);
             adapter1 = new ScoreAdapter();
             adapter2 = new ScoreAdapter();
