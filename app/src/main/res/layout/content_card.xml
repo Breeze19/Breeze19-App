@@ -49,8 +49,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:visibility="visible"
-                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:textSize="23sp"
                 android:id="@+id/heading"
                 android:layout_marginTop="30dp"
                 />
@@ -59,7 +61,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="visible"
-                android:textSize="22sp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:layout_marginLeft="10dp"
                 android:id="@+id/content"
                 android:layout_marginTop="15dp"
                 />

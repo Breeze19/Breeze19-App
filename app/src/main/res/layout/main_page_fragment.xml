@@ -38,7 +38,7 @@
             android:src="@drawable/orangejustice"
             />
     </LinearLayout>
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:scrollbarStyle="outsideInset"
         android:scrollbarFadeDuration="10"
@@ -62,16 +62,29 @@
                 />
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:id="@+id/events_recycler"
-                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
                 />
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFF"
+                android:text="Live Scores"
+                android:id="@+id/liveSores"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:drawablePadding="5dp"
+                android:drawableLeft="@drawable/circle"
+                android:textSize="50dp"
+                />
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
                 android:id="@+id/recycleView"
-                android:layout_height="wrap_content"/>
+                android:nestedScrollingEnabled="false"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -82,6 +95,6 @@
 
         </LinearLayout>
 
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
 </LinearLayout>

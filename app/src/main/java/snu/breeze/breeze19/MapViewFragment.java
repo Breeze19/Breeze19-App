@@ -221,8 +221,9 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
         LatLng a_block = new LatLng(28.526721, 77.577139);
         LatLng library = new LatLng(28.524945, 77.574395);
         LatLng lake = new LatLng(28.525177, 77.576923);
+        LatLng aadarsh = new LatLng(28.534802, 77.574237);
         LatLng ab_atrium = new LatLng(28.526372, 77.576805);
-        LatLng mountSnu = new LatLng(28.526170, 77.575117);
+        LatLng mountSnu = new LatLng(28.525825, 77.575303);
         LatLng central_vista = new LatLng(28.525759, 77.574609);
         LatLng dh2 = new LatLng(28.524473, 77.570245);
         LatLng football = new LatLng(28.523075, 77.571815);
@@ -230,6 +231,7 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
         LatLng tennis = new LatLng(28.524066, 77.571332);
         LatLng volleyball = new LatLng(28.524520, 77.571674);
         LatLng baskbetball = new LatLng(28.524132, 77.571147);
+        LatLng mahesh = new LatLng(28.534376, 77.575607);
         final LatLng main_stage = new LatLng(28.526047, 77.571124);
 
         final MarkerOptions marker1 =new MarkerOptions().position(d_block).title("D Dlock").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
@@ -248,6 +250,8 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
         final MarkerOptions marker14 =new MarkerOptions().position(volleyball).title("Volleyball Court").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
         final MarkerOptions marker15 =new MarkerOptions().position(baskbetball).title("Basketball Court").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
         final MarkerOptions marker16 =new MarkerOptions().position(main_stage).title("Main Stage").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+        final MarkerOptions marker17 =new MarkerOptions().position(aadarsh).title("Aadarsh").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+        final MarkerOptions marker18 =new MarkerOptions().position(mahesh).title("Mahesh").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
 
 //the include method will calculate the min and max bound.
         builder.include(marker1.getPosition());
@@ -266,6 +270,8 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
         builder.include(marker14.getPosition());
         builder.include(marker15.getPosition());
         builder.include(marker16.getPosition());
+        builder.include(marker17.getPosition());
+        builder.include(marker18.getPosition());
 
         bounds = builder.build();
 
@@ -290,6 +296,8 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
             Marker marker460 =  googleMap.addMarker(marker14);
             Marker marker461 =  googleMap.addMarker(marker15);
             Marker marker462 =  googleMap.addMarker(marker16);
+            Marker marker466=  googleMap.addMarker(marker17);
+            Marker marker468 =  googleMap.addMarker(marker18);
             isMapLoaded = true;
             googleMap.setMyLocationEnabled(true);
              CameraPosition cameraPosition = new CameraPosition.Builder()

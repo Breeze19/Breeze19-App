@@ -1,7 +1,10 @@
 package snu.breeze.breeze19;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +19,9 @@ public class LiveEventsAdapter extends RecyclerView.Adapter<LiveEventsAdapter.Vi
     private final String TAG = LiveEventsAdapter.class.getSimpleName();
 
     public interface ClickListener{
-        void onClick(LiveEventsData data);
+        void sendNotification(LiveEventsData data);
+        void edit(LiveEventsData data);
+        void delete(LiveEventsData data);
     }
 
     private Context context;
@@ -85,35 +90,58 @@ public class LiveEventsAdapter extends RecyclerView.Adapter<LiveEventsAdapter.Vi
         private TextView sportView;
         private TextView headingView;
         private TextView contentView;
-        private ImageButton button;
-        private ImageButton editButton;
-        private ImageButton deleteButton;
+
+        private ImageButton sendNotification;
+        private ImageButton edit;
+        private CardView card;
+        private ImageButton delete;
 
         public ViewHolder(View view){
             super(view);
-            editButton = view.findViewById(R.id.edit_image_button);
-            deleteButton = view.findViewById(R.id.delete_image_button);
-            button = view.findViewById(R.id.send_notification_image_button);
+            edit = view.findViewById(R.id.edit_image_button);
+            delete= view.findViewById(R.id.delete_image_button);
+            sendNotification = view.findViewById(R.id.send_notification_image_button);
             parentLayout = (LinearLayout) view.findViewById(R.id.parent_layout);
             liveDataParentLayout = (LinearLayout) view.findViewById(R.id.live_data_parent_layout);
             liveView = (TextView) view.findViewById(R.id.live);
             sportView = (TextView) view.findViewById(R.id.sportname);
             headingView = (TextView) view.findViewById(R.id.heading);
             contentView = (TextView) view.findViewById(R.id.content);
+            card = view.findViewById(R.id.card);
         }
 
         public void bind(final LiveEventsData data){
             parentLayout.setVisibility(View.GONE);
             liveDataParentLayout.setVisibility(View.VISIBLE);
             liveView.setVisibility(View.GONE);
-            sportView.setVisibility(View.GONE);
+            sportView.setText("Event");
+            sportView.setTextColor(context.getResources().getColor(R.color.white));
+            card.setCardBackgroundColor(context.getResources().getColor(R.color.blue));
+            headingView.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/Biko_Regular.otf"));
+            contentView.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/Biko_Regular.otf"));
+            sportView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_dance1,0,0,0);
             headingView.setText(data.getHeading());
             contentView.setText(data.getContent());
             if(listener != null) {
-                button.setOnClickListener(new View.OnClickListener() {
+                sendNotification.setVisibility(View.VISIBLE);
+                edit.setVisibility(View.VISIBLE);
+                delete.setVisibility(View.VISIBLE);
+                sendNotification.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        listener.onClick(data);
+                        listener.sendNotification(data);
+                    }
+                });
+                edit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        listener.edit(data);
+                    }
+                });
+                delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        listener.delete(data);
                     }
                 });
             }
