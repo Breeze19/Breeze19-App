@@ -157,7 +157,6 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
             eventContact.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     Snackbar.make(v, "Calling", Snackbar.LENGTH_SHORT).show();
                     Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNo));
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

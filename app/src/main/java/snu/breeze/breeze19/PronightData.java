@@ -2,14 +2,17 @@ package snu.breeze.breeze19;
 
 import android.widget.TextView;
 
-public class pronightData {
+public class PronightData {
 
     private String Name;
     private int BackgroundNo;
     private String key;
 
+    public PronightData(){
 
-    public pronightData(String name,int number){
+    }
+
+    public PronightData(String name, int number){
         this.Name = name;
         this.BackgroundNo = number;
     }
