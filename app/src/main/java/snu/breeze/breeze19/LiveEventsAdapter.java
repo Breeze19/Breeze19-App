@@ -86,9 +86,14 @@ public class LiveEventsAdapter extends RecyclerView.Adapter<LiveEventsAdapter.Vi
         private TextView headingView;
         private TextView contentView;
         private ImageButton button;
+        private ImageButton editButton;
+        private ImageButton deleteButton;
 
         public ViewHolder(View view){
             super(view);
+            editButton = view.findViewById(R.id.edit_image_button);
+            deleteButton = view.findViewById(R.id.delete_image_button);
+            button = view.findViewById(R.id.send_notification_image_button);
             parentLayout = (LinearLayout) view.findViewById(R.id.parent_layout);
             liveDataParentLayout = (LinearLayout) view.findViewById(R.id.live_data_parent_layout);
             liveView = (TextView) view.findViewById(R.id.live);

@@ -144,7 +144,6 @@ public class MainPage extends Fragment {
                     }
                 }
             }
-
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
 
@@ -174,6 +173,7 @@ public class MainPage extends Fragment {
         LinearLayout layout = view.findViewById(R.id.layout3);
         LinearLayout layout2 = view.findViewById(R.id.layout2);
         text1 = view.findViewById(R.id.live);
+        //text2 = view.findViewById(R.id.liveSores);
         button = view.findViewById(R.id.admin_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
