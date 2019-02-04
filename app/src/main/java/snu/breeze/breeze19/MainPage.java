@@ -223,7 +223,7 @@ public class MainPage extends Fragment {
         effect.start();
         layout.addView(effect,0);
         text1.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "fonts/Atami-Display.otf"));
-        adapter = new LiveScoresAdapter(getContext());
+        adapter = new LiveScoresAdapter(getContext(),null);
         liveRecyclerView.setAdapter(adapter);
         reference.addChildEventListener(getChildEventListener());
         eventsReference.addChildEventListener(getEventsChildEventListener());

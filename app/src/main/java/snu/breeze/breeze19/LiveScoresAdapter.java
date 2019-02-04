@@ -9,6 +9,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -19,11 +20,17 @@ import xyz.pinaki.android.wheelticker.OdometerAdapter;
 public class LiveScoresAdapter extends RecyclerView.Adapter<LiveScoresAdapter.ViewHolder> {
     private final String TAG = LiveScoresAdapter.class.getSimpleName();
 
+    public interface ClickListener{
+        void edit(LiveScoreData data);
+    }
+
     private Context context;
+    private ClickListener listener;
     private ArrayList<LiveScoreData> liveScoreData;
 
-    public LiveScoresAdapter(Context context){
+    public LiveScoresAdapter(Context context,ClickListener listener){
         this.context = context;
+        this.listener = listener;
         liveScoreData = new ArrayList<LiveScoreData>();
     }
 
@@ -88,6 +95,9 @@ public class LiveScoresAdapter extends RecyclerView.Adapter<LiveScoresAdapter.Vi
         private TextView live;
         private Odometer score1;
         private Odometer score2;
+        private ImageButton sendNotification;
+        private ImageButton edit;
+        private ImageButton delete;
 
         public ViewHolder(View view){
             super(view);
@@ -101,7 +111,7 @@ public class LiveScoresAdapter extends RecyclerView.Adapter<LiveScoresAdapter.Vi
             adapter2 = new ScoreAdapter();
         }
 
-        public void bind(LiveScoreData data){
+        public void bind(final LiveScoreData data){
             DisplayMetrics dimensions = context.getResources().getDisplayMetrics();
             int width = dimensions.widthPixels;
             int height = dimensions.heightPixels;
@@ -149,6 +159,15 @@ public class LiveScoresAdapter extends RecyclerView.Adapter<LiveScoresAdapter.Vi
             score2.setAdapter(adapter2);
             adapter1.setScore(Integer.parseInt(data.getScore1()));
             adapter2.setScore(Integer.parseInt(data.getScore2()));
+            if(listener != null) {
+                edit.setVisibility(View.VISIBLE);
+                edit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        listener.edit(data);
+                    }
+                });
+            }
         }
     }
 
