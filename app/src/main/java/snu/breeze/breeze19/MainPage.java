@@ -146,7 +146,15 @@ public class MainPage extends Fragment {
             }
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
+                if(dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        if(snapshot.exists()){
+                            LiveScoreData data = snapshot.getValue(LiveScoreData.class);
+                            data.setKey(dataSnapshot.getKey()+"$"+snapshot.getKey());
+                            adapter.delete(data);
+                        }
+                    }
+                }
             }
 
             @Override

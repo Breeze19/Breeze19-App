@@ -33,12 +33,13 @@ public class LiveScoreData implements Parcelable {
     public LiveScoreData(){
     }
 
-    public LiveScoreData(String team1,String team2,String score1,String score2,String sportName){
+    public LiveScoreData(String team1,String team2,String score1,String score2,String sportName, int isLive){
         this.team1 = team1;
         this.team2 = team2;
         this.score1 = score1;
         this.score2 = score2;
         this.sportName = sportName;
+        this.isLive = isLive;
     }
 
     private LiveScoreData(Parcel in){

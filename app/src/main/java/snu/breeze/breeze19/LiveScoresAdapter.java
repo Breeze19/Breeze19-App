@@ -54,8 +54,11 @@ public class LiveScoresAdapter extends RecyclerView.Adapter<LiveScoresAdapter.Vi
     }
 
     public void delete(LiveScoreData data){
-        liveScoreData.remove(isPresent(data));
-        notifyDataSetChanged();
+        int index = isPresent(data);
+        if(index != -1) {
+            liveScoreData.remove(index);
+            notifyDataSetChanged();
+        }
     }
 
     private int isPresent(LiveScoreData data){

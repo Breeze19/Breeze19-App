@@ -102,27 +102,30 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
                 @Override
                 public void onClick(View v) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(AdminActivity.this);
-                    LinearLayout layout = new LinearLayout(AdminActivity.this);
+                    final LinearLayout layout = new LinearLayout(AdminActivity.this);
                     layout.setOrientation(LinearLayout.VERTICAL);
                     final EditText team1View = new EditText(AdminActivity.this);
                     final EditText team2View = new EditText(AdminActivity.this);
                     final EditText score1View = new EditText(AdminActivity.this);
                     final EditText score2View = new EditText(AdminActivity.this);
+                    final EditText live = new EditText(AdminActivity.this);
                     team1View.setHint("Team 1 here");
                     team2View.setHint("Team 2 here");
                     score1View.setHint("Score for team 1 here");
                     score2View.setHint("Score for team 2 here");
+                    live.setHint("1 for live, 0 for finished");
                     layout.addView(team1View);
                     layout.addView(score1View);
                     layout.addView(team2View);
                     layout.addView(score2View);
+                    layout.addView(live);
                     builder.setView(layout);
                     builder.setTitle("Add score");
                     builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(final DialogInterface dialog, int which) {
                             reference.push().setValue(new LiveScoreData(team1View.getText().toString(), team2View.getText().toString()
-                                    , score1View.getText().toString(), score2View.getText().toString(),sportName)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    , score1View.getText().toString(), score2View.getText().toString(),sportName,Integer.parseInt(live.getText().toString()))).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
@@ -353,25 +356,36 @@ public class AdminActivity extends AppCompatActivity implements LiveEventsAdapte
         final EditText team2View = new EditText(AdminActivity.this);
         final EditText score1View = new EditText(AdminActivity.this);
         final EditText score2View = new EditText(AdminActivity.this);
+        final EditText isLive = new EditText(AdminActivity.this);
         team1View.setText(data.getTeam1());
         team2View.setText(data.getTeam2());
         score1View.setText(data.getScore1());
         score2View.setText(data.getScore2());
+        isLive.setHint("1 for live, 0 for finished");
         layout.addView(team1View);
         layout.addView(score1View);
         layout.addView(team2View);
         layout.addView(score2View);
+        layout.addView(isLive);
         builder.setView(layout);
         builder.setTitle("Edit score");
         builder.setPositiveButton("Edit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(final DialogInterface dialog, int which) {
+                int live = data.getisLive();
+                try{
+                    live = Integer.parseInt(isLive.getText().toString());
+                }
+                catch(Exception exception){
+                    Log.d(TAG,"Exception: " + exception.getMessage());
+                }
                 if (!team1View.getText().toString().equals(data.getTeam1()) ||
                         !team2View.getText().toString().equals(data.getTeam1()) ||
                         !score1View.getText().toString().equals(data.getScore1()) ||
-                        !score2View.getText().toString().equals(data.getScore2())) {
+                        !score2View.getText().toString().equals(data.getScore2())||
+                        !(live==data.getisLive()))  {
                     reference.child(data.getKey()).setValue(new LiveScoreData(team1View.getText().toString(), team2View.getText().toString(),
-                            score1View.getText().toString(), score2View.getText().toString(),sportName)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            score1View.getText().toString(), score2View.getText().toString(),sportName,live)).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
