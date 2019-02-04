@@ -62,6 +62,9 @@ public class AdminActivity extends AppCompatActivity {
                 layout.setOrientation(LinearLayout.VERTICAL);
                 final TextView headingView = new TextView(AdminActivity.this);
                 final TextView contentView = new TextView(AdminActivity.this);
+                layout.addView(headingView);
+                layout.addView(contentView);
+                builder.setView(layout);
                 builder.setPositiveButton("Send", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(final DialogInterface dialog, int which) {
@@ -102,8 +105,11 @@ public class AdminActivity extends AppCompatActivity {
                             }
                         }
                     }
+
                 });
+                builder.show();
             }
+
         });
     }
 
