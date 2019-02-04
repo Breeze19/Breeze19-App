@@ -41,14 +41,15 @@ public class LiveScoresActivity extends AppCompatActivity {
         reference = database.getReference("/data/livescores/" + sportName + "/");
         liveScoresView = (RecyclerView) findViewById(R.id.live_scores_recycler_view);
         adminPanelButton = (Button) findViewById(R.id.admin_live_scores);
-        adminPanelButton.setOnClickListener(new View.OnClickListener() {
+        adminPanelButton.setVisibility(View.GONE);
+      /*  adminPanelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent adminPanelIntent = new Intent(getApplicationContext(),AdminActivity.class);
                 adminPanelIntent.putExtra(Constants.INTENT_KEY_SPORT_NAME,sportName);
                 startActivity(adminPanelIntent);
             }
-        });
+        }); */
         LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
         liveScoresView.setLayoutManager(manager);
     }

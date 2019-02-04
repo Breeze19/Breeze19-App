@@ -233,6 +233,7 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
         LatLng baskbetball = new LatLng(28.524132, 77.571147);
         LatLng mahesh = new LatLng(28.534376, 77.575607);
         LatLng blue_circle = new LatLng(28.527062, 77.572711);
+        LatLng open_stage = new LatLng(28.525940, 77.572003);
         final LatLng main_stage = new LatLng(28.526047, 77.571124);
 
         final MarkerOptions marker1 =new MarkerOptions().position(d_block).title("D Dlock").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
@@ -254,6 +255,7 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
         final MarkerOptions marker17 =new MarkerOptions().position(aadarsh).title("Aadarsh").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
         final MarkerOptions marker18 =new MarkerOptions().position(mahesh).title("Mahesh").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
         final MarkerOptions marker19 =new MarkerOptions().position(blue_circle).title("Blue Circle").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+        final MarkerOptions marker20 =new MarkerOptions().position(open_stage).title("HCl Concerts - Open Stage").icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
 
 //the include method will calculate the min and max bound.
         builder.include(marker1.getPosition());
@@ -275,6 +277,7 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
         builder.include(marker17.getPosition());
         builder.include(marker18.getPosition());
         builder.include(marker19.getPosition());
+        builder.include(marker20.getPosition());
 
         bounds = builder.build();
 
@@ -302,6 +305,7 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Loc
             Marker marker466=  googleMap.addMarker(marker17);
             Marker marker468 =  googleMap.addMarker(marker18);
             Marker marker465 =  googleMap.addMarker(marker19);
+            Marker marker415 =  googleMap.addMarker(marker20);
             isMapLoaded = true;
             googleMap.setMyLocationEnabled(true);
              CameraPosition cameraPosition = new CameraPosition.Builder()

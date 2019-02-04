@@ -85,6 +85,7 @@ public class flagshipFragment extends Fragment {
         flagshipRecycler = (RecyclerView) view.findViewById(R.id.flagship_recycler);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         flagshipRecycler.setLayoutManager(manager);
+        flagshipRecycler.setAdapter(adapter);
         reference.addChildEventListener(getChildEventListener());
         Log.d(TAG, "flagship page made");
         return view;

@@ -185,13 +185,15 @@ public class MainPage extends Fragment {
         text2 = view.findViewById(R.id.live2);
         //text2 = view.findViewById(R.id.liveSores);
         button = view.findViewById(R.id.admin_button);
-        button.setOnClickListener(new View.OnClickListener() {
+        button.setVisibility(View.GONE);
+        /*button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent adminIntent = new Intent(getContext(),AdminActivity.class);
                 startActivity(adminIntent);
             }
-        });
+        }); */
+
        // GifImageView gif = new GifImageView(getContext());
         GifImageView gif2 = new GifImageView(getContext());
         flag = 0;
