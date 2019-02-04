@@ -49,6 +49,7 @@ public class MainPage extends Fragment {
 
     private Integer flag;
     private TextView text1;
+    private TextView text2;
 
 
     public MainPage(){
@@ -181,6 +182,7 @@ public class MainPage extends Fragment {
         LinearLayout layout = view.findViewById(R.id.layout3);
         LinearLayout layout2 = view.findViewById(R.id.layout2);
         text1 = view.findViewById(R.id.live);
+        text2 = view.findViewById(R.id.live2);
         //text2 = view.findViewById(R.id.liveSores);
         button = view.findViewById(R.id.admin_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -225,12 +227,13 @@ public class MainPage extends Fragment {
         colors.add(getResources().getColor(R.color.yellow));
         colors.add(getResources().getColor(R.color.neon_color3));
         GlitchTextEffect effect = new GlitchTextEffect(getContext(),colors,"Breeze '19");
-        effect.setTextSize(59);
+        effect.setTextSize(34);
         effect.setFontFile("fonts/Atami-Display.otf");
         effect.setNoise(7);
         effect.start();
         layout.addView(effect,0);
         text1.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "fonts/Atami-Display.otf"));
+        text2.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "fonts/Atami-Display.otf"));
         adapter = new LiveScoresAdapter(getContext(),null);
         liveRecyclerView.setAdapter(adapter);
         eventsRecyclerView.setAdapter(eventsAdapter);

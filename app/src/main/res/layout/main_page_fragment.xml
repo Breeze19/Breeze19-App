@@ -31,7 +31,7 @@
 
         <pl.droidsonroids.gif.GifImageView
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="100dp"
             android:id="@+id/gif2"
             android:paddingLeft="5dp"
             android:paddingRight="10dp"
@@ -58,7 +58,7 @@
                 android:gravity="center"
                 android:drawablePadding="5dp"
                 android:drawableLeft="@drawable/circle"
-                android:textSize="50dp"
+                android:textSize="42dp"
                 />
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
@@ -72,12 +72,12 @@
                 android:layout_height="wrap_content"
                 android:textColor="#FFF"
                 android:text="Live Scores"
-                android:id="@+id/liveSores"
+                android:id="@+id/live2"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:drawablePadding="5dp"
                 android:drawableLeft="@drawable/circle"
-                android:textSize="50dp"
+                android:textSize="42dp"
                 />
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"

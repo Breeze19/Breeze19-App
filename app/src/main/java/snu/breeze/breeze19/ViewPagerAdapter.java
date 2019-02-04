@@ -44,24 +44,24 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
                     break;
                 case 1:
                     bundle = new Bundle();
-                    myMessage = "sports";
+                    myMessage = "cultural";
                     bundle.putString("category", myMessage );
                     fragment = new EventsFragment();
                     fragment.setArguments(bundle);
                     break;
                 case 2:
-                        bundle = new Bundle();
-                        myMessage = "cultural";
-                        bundle.putString("category", myMessage );
+                    bundle = new Bundle();
+                    myMessage = "technical";
+                    bundle.putString("category", myMessage );
                     fragment = new EventsFragment();
-                        fragment.setArguments(bundle);
+                    fragment.setArguments(bundle);
                         break;
                  case 3:
-                        bundle = new Bundle();
-                        myMessage = "technical";
-                        bundle.putString("category", myMessage );
-                      fragment = new EventsFragment();
-                        fragment.setArguments(bundle);
+                     bundle = new Bundle();
+                     myMessage = "sports";
+                     bundle.putString("category", myMessage );
+                     fragment = new EventsFragment();
+                     fragment.setArguments(bundle);
                         break;
             }
         }
@@ -97,13 +97,13 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
                     title = "Pro Nights";
                     break;
                 case 1:
-                    title = "Sports";
-                    break;
-                case 2:
                     title = "Cultural";
                     break;
-                case 3:
+                case 2:
                     title = "Technical";
+                    break;
+                case 3:
+                    title = "Sports";
                     break;
             }
         }

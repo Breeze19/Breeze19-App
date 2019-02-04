@@ -45,7 +45,7 @@ public class ContactPage extends Fragment {
         RecyclerView listView= view.findViewById(R.id.list);
         dataModels = new ArrayList<ContactPersonData>();
         dataModels.add(new ContactPersonData("Vignesh Shridhar", "Public Relations", "9677030542",R.drawable.vignesh));
-        dataModels.add(new ContactPersonData("Arjun Soni","Events Manager","9891306018",R.drawable.arjun));
+        //dataModels.add(new ContactPersonData("Arjun Soni","Events Manager","9891306018",R.drawable.arjun));
         dataModels.add(new ContactPersonData("Anmol Mahajan","Sports Co-ordinator","9560954626",R.drawable.anmol));
         dataModels.add(new ContactPersonData("Sanjana Gautam","Sports Co-ordinator","9015378953",R.drawable.sanjana));
         dataModels.add(new ContactPersonData("Bhavya Agarwal", "Accommodation", " 9956040085",R.drawable.bhavya));
@@ -111,12 +111,7 @@ class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder>{
             callButton = view.findViewById(R.id.call_button);
             photo = view.findViewById(R.id.picture);
         }
-
         public void bind(final ContactPersonData contactPersonData){
-            //  Animation animation = AnimationUtils.loadAnimation(mContext, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
-            //  result.startAnimation(animation);
-            // lastPosition = position;
-
             Name.setText(contactPersonData.getName());
             Role.setText(contactPersonData.getRole());
             photo.setImageResource(contactPersonData.getPhoto());

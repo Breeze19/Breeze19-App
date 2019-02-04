@@ -83,7 +83,7 @@ public class FCMService extends FirebaseMessagingService {
         contentView.setTextViewText(R.id.title,(bundle.getString("heading")));
         contentView.setTextViewText(R.id.text, bundle.getString("content").substring(0,Math.min(bundle.getString("content").length(),40)));
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this,"fcm_channel")
-                .setSmallIcon(R.drawable.ic_contact)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 .setVibrate(new long[]{100,100})

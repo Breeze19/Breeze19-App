@@ -52,8 +52,10 @@ public class LiveEventsAdapter extends RecyclerView.Adapter<LiveEventsAdapter.Vi
 
     public void delete(LiveEventsData data){
         int index = find(data);
-        liveEventsData.remove(index);
-        notifyDataSetChanged();
+        if(index != -1) {
+            liveEventsData.remove(index);
+            notifyDataSetChanged();
+        }
     }
 
     private int find(LiveEventsData data){
