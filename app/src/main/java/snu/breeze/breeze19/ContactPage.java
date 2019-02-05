@@ -41,13 +41,12 @@ public class ContactPage extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.contact_page_fragment,container,false);
-        ConstraintLayout layout = view.findViewById(R.id.constraint);
         RecyclerView listView= view.findViewById(R.id.list);
         dataModels = new ArrayList<ContactPersonData>();
         dataModels.add(new ContactPersonData("Vignesh Shridhar", "Public Relations", "9677030542",R.drawable.vignesh));
         //dataModels.add(new ContactPersonData("Arjun Soni","Events Manager","9891306018",R.drawable.arjun));
         dataModels.add(new ContactPersonData("Anmol Mahajan","Sports Co-ordinator","9560954626",R.drawable.anmol));
-        dataModels.add(new ContactPersonData("Sanjana Gautam","Sports Co-ordinator","9015378953",R.drawable.sanjana));
+        dataModels.add(new ContactPersonData("Sanjana Maurya","Sports Co-ordinator","9015378953",R.drawable.sanjana));
         dataModels.add(new ContactPersonData("Bhavya Agarwal", "Accommodation", " 9956040085",R.drawable.bhavya));
         dataModels.add(new ContactPersonData("Aishwarya Sathya", "Accommodation", "9990900700",R.drawable.aishwarya));
         dataModels.add(new ContactPersonData("Vedansh Gupta ", "Accommodation", "7523830194",R.drawable.vedansh));

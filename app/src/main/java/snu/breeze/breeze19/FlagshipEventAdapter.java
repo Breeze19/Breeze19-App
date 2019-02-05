@@ -97,7 +97,7 @@ public class FlagshipEventAdapter extends RecyclerView.Adapter<FlagshipEventAdap
             date.setTypeface(custom_font3);
             switch (data.getBackgroundNo()){
                 case 1:
-                    image.setImageDrawable(context.getResources().getDrawable(R.drawable.app1));
+                    image.setImageDrawable(context.getResources().getDrawable(R.drawable.app3));
                     break;
 
                 case 2:
@@ -105,11 +105,11 @@ public class FlagshipEventAdapter extends RecyclerView.Adapter<FlagshipEventAdap
                     break;
 
                 case 3:
-                    image.setImageDrawable(context.getResources().getDrawable(R.drawable.app3));
+                    image.setImageDrawable(context.getResources().getDrawable(R.drawable.app4));
                     break;
 
                 case 4:
-                    image.setImageDrawable(context.getResources().getDrawable(R.drawable.app4));
+                    image.setImageDrawable(context.getResources().getDrawable(R.drawable.app3));
                     break;
             }
         }

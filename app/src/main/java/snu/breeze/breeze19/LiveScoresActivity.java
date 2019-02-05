@@ -42,7 +42,7 @@ public class LiveScoresActivity extends AppCompatActivity {
         liveScoresView = (RecyclerView) findViewById(R.id.live_scores_recycler_view);
         adminPanelButton = (Button) findViewById(R.id.admin_live_scores);
         adminPanelButton.setVisibility(View.GONE);
-      /*  adminPanelButton.setOnClickListener(new View.OnClickListener() {
+        /*adminPanelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent adminPanelIntent = new Intent(getApplicationContext(),AdminActivity.class);

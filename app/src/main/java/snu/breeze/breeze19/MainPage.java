@@ -186,7 +186,7 @@ public class MainPage extends Fragment {
         //text2 = view.findViewById(R.id.liveSores);
         button = view.findViewById(R.id.admin_button);
         button.setVisibility(View.GONE);
-        /*button.setOnClickListener(new View.OnClickListener() {
+       /* button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent adminIntent = new Intent(getContext(),AdminActivity.class);
